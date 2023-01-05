@@ -4,6 +4,7 @@
 
 html,
 body {
+    font-family: "GT Walsheim Pro",sans-serif;
     margin: 6px 5px;
     box-sizing: border-box;
 }

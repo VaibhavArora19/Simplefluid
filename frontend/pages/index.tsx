@@ -1,10 +1,11 @@
-import "../styles/Home.module.css";
+import LandingPage from "../components/LandingPage/LandingPage";
 
+import "../styles/Home.module.css";
 
 export default function Home() {
   return (
     <>
-     <h1>Hello</h1>
+     <LandingPage />
     </>
   )
 }

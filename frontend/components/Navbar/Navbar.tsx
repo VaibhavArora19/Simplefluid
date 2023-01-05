@@ -2,7 +2,7 @@ import {ConnectButton} from "@rainbow-me/rainbowkit"
 
 const Navbar = (): JSX.Element => {
     return (
-        <div>
+        <div style={{position:"relative", left:"57%", width:"480px"}}>
             <ConnectButton />
         </div>
     )

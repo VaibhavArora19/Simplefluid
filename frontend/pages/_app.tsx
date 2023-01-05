@@ -36,10 +36,10 @@ export default function App({ Component, pageProps }: AppProps) {
       <div style={{display:"flex", justifyContent:"space-between"}}>
         <div>
           <Sidebar />
-        </div>
-          <Component {...pageProps} />
-        <div>
+          </div>
+        <div style={{width:"75%"}}>
           <Navbar />
+          <Component {...pageProps} />
         </div>
       </div>
     </RainbowKitProvider>
