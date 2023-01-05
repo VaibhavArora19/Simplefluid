@@ -1,0 +1,43 @@
+.sidebar {
+    position: fixed;
+    margin-left: 4px;
+    width: 235px;
+    border-right: 1px solid rgb(228, 220, 220);
+    height: 100vh;
+}
+
+
+.logo {
+    display: inline-block;
+}
+
+.image {
+    display: inline-block;
+    position: relative;
+    bottom: 7px;
+}
+
+.logo h1 {
+    margin-left: 10px;
+    margin-bottom: 80px;
+    font-size: 1.85rem;
+    font-weight: 700;
+    text-align: center;
+    display: inline-block;
+}
+
+.sidebar h2 {
+    font-size: 0.99rem;
+    font-weight: 600;
+    padding-top: 15px;
+    color: rgb(74, 113, 239);
+    padding-left: 20px;
+}
+
+.link {
+    background-color: rgba(146, 196, 230, 0.2);
+    border-radius: 10px;
+    width: 220px;
+    margin-bottom: 30px;
+    height: 55px;
+}
