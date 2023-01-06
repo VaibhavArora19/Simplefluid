@@ -17,11 +17,11 @@ const Sidebar = (): JSX.Element => {
           alt="Simplefluid logo"
           className={classes.image}
         />
-        <h1>Simplefluid</h1>
+        <Link href="/"><h1>Simplefluid</h1></Link>
       </div>
       <div>
-        <div className={router.pathname === "/" ? classes.linkActive : ""}>
-          <Link href="">
+        <div className={router.pathname === "/dashboard" ? classes.linkActive : classes.link}>
+          <Link href="/dashboard">
             <h2><i className="fa-regular fa-chart-network"></i>&nbsp;&nbsp; Dashboard</h2>
           </Link>
         </div>

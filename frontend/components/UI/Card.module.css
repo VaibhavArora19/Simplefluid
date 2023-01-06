@@ -1,0 +1,53 @@
+.card {
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 340px;
+    height: 180px;
+    text-align: center;
+    margin-bottom: 8%;
+    transition-duration: 0.3s;
+}
+
+.card h2{
+    padding-top: 40px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.animation {
+    margin-top: 10%;
+    margin-left: 38%;
+    display: flex;
+    flex-direction: row;
+}
+
+.animate {
+    border-radius: 50px;
+    border: 1px solid green;
+    border-style: dashed;
+    animation-name: Rotate;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -moz-animation-name: Rotate;
+    -moz-animation-duration: 2s;
+    -moz-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -ms-animation-name: Rotate;
+    -ms-animation-duration: 2s;
+    -ms-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes Rotate{
+    0% {
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(360deg);
+    }
+}
+
+.card:hover {
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
