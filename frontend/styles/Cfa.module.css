@@ -3,8 +3,9 @@
     margin-left: 13%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 20px;
-    width: 60%;
-    margin-bottom: 10%;
+    width: 50%;
+    padding-bottom: 1%;
+    margin-bottom: 3%;
 }
 
 .page h1 {
@@ -15,20 +16,17 @@
     font-weight: 600;
 }
 
-.options {
-    margin: 0 auto;
-    width: 31%;
+.page label {
+    margin-left: 15%;
 }
 
-.options a{
-    font-size: 17px;
+.page h2{
+    font-size: 1.2rem;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
-.pageManager {
-    margin-left: 5%;
 
-}
-
-.options button {
-    margin-bottom: 3%;
+.button {
+    margin-left: 27%;
 }

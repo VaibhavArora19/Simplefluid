@@ -10,7 +10,7 @@ const Navbar = (): JSX.Element => {
   }, []);
 
   const themeHandler = () => {
-    setTheme(theme === "emerald" ? "halloween" : "emerald");
+    setTheme(theme === "emerald" ? "forest" : "emerald");
   };
 
   return (

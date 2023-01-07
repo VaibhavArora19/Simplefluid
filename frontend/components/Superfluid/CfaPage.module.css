@@ -4,6 +4,31 @@
     justify-content: space-around;
 }
 
+.addresses {
+    width: 23.5rem;
+    height: 3.2rem;
+    border-radius: 10px;
+    background-color: inherit;
+    border: 1px solid rgb(169, 166, 166);
+    padding-left: 5%;
+    display: inline-block;
+
+}
+
+.input {
+    margin-right: 30px;
+}
+
+.page span {
+    display: inline-block;
+    font-size: 1.1rem;
+    margin-top: 12px;   
+}
+
+.page input:focus {
+    border: 1px solid rgb(154, 44, 44);
+}
+
 .page button {
     color: rgb(207, 34, 34);
 }
