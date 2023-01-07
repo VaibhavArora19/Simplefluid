@@ -1,18 +1,24 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { getDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
+import CfaPage from "../components/Superfluid/CfaPage";
 
-let initialState = 1;
+let initialState = {
+    totalAccounts: [<CfaPage />]
+};
 
 const counterSlice = createSlice({
     name:"counter",
     initialState,
     reducers:{
         increment(state) {
-            console.log(initialState);
-            initialState = initialState + 1;
+            return {
+                totalAccounts: [...state.totalAccounts, <CfaPage />]
+            }
         },
         decrement(state) {
-            return initialState - 1;
+          return {
+            totalAccounts: state.totalAccounts.slice(0, state.totalAccounts.length - 2)
+          }
         }
     }
 });
