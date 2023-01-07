@@ -1,0 +1,9 @@
+.page {
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.page button {
+    color: rgb(207, 34, 34);
+}

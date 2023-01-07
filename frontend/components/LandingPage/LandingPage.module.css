@@ -24,9 +24,9 @@
 
 .video {
     width: 560px;
-    height: 450px;
+    height: 415px;
     border-radius: 10px;
-    border: 1px solid rgb(123, 152, 217);
+    border: 1px solid rgb(14, 15, 18);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transform: scale(1.01);
     float: right;

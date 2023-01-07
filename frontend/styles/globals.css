@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-[data-theme='emerald'] {
+/* [data-theme='emerald'] {
     color:black;
     background-color: white;
     --my-color:white;
@@ -12,11 +12,10 @@
     color: white;
     background-color: black;
     --my-color:black;
-}
+} */
 html,
 body {
     font-family: "GT Walsheim Pro",sans-serif;
     margin: 6px 5px;
     box-sizing: border-box;
-    background-color: var(--my-color);
 }

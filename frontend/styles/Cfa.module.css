@@ -1,0 +1,34 @@
+.page {
+    margin-top: 10%;
+    margin-left: 13%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 20px;
+    width: 60%;
+    margin-bottom: 10%;
+}
+
+.page h1 {
+    text-align: center;
+    font-size: 1.6rem;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.options {
+    margin: 0 auto;
+    width: 31%;
+}
+
+.options a{
+    font-size: 17px;
+}
+
+.pageManager {
+    margin-left: 5%;
+
+}
+
+.options button {
+    margin-bottom: 3%;
+}

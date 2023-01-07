@@ -6,6 +6,8 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
+import store from "../store";
+import { Provider } from "react-redux";
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 
@@ -31,6 +33,7 @@ const wagmiClient = createClient({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
+  <Provider store={store}>
   <WagmiConfig client={wagmiClient}>
     <RainbowKitProvider chains={chains}>
       <div style={{display:"flex", justifyContent:"space-between"}}>
@@ -44,5 +47,6 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
     </RainbowKitProvider>
   </WagmiConfig>
+  </Provider>
   )
 }

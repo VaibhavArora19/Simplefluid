@@ -1,6 +1,6 @@
 .card {
     border-radius: 20px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(133, 133, 133, 0.2) 0px 2px 8px 0px;
     width: 340px;
     height: 180px;
     text-align: center;
@@ -49,5 +49,5 @@
 }
 
 .card:hover {
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    box-shadow: rgba(93, 126, 140, 0.12) 0px 2px 4px 0px, rgba(78, 114, 129, 0.32) 0px 2px 16px 0px;
 }
