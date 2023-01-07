@@ -46,7 +46,7 @@ const Sidebar = (): JSX.Element => {
           </Link>
         </div>
         <div className={router.pathname === "/permissions" ? classes.linkActive : classes.link}>
-          <Link href="">
+          <Link href="/permissions">
             <h2><i className="fa-solid fa-binary-circle-check"></i>&nbsp;&nbsp; Permissions</h2>
           </Link>
         </div>
