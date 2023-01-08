@@ -1,6 +1,7 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { getDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 import CfaPage from "../components/Superfluid/CfaPage";
+import CFA from "../pages/sendcfa";
 
 let initialState = {
     totalAccounts: [<CfaPage />]

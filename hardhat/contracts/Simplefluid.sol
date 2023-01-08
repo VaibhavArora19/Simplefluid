@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity 0.8.14;
 
 import { 
     ISuperfluid 
@@ -15,6 +15,11 @@ import {
 
 contract Simplefluid {
 
+    event streamStartedSingle(address sender, address receiver, int96 flowRate);
+    event streamStartedMultiple(address sender, address[] receiver, int96 flowRate);
+    event streamDeletedSingle(address sender, address receiver);
+    event streamStartedMultiple(address sender, address[] receiver);
+
     using SuperTokenV1Library for ISuperToken;
     ISuperToken public token;
     
@@ -22,16 +27,34 @@ contract Simplefluid {
         token = _token;
     }
 
-    // modifier setPermissions(int96 allowance) {
-    //     token.setFlowPermissions(address(this), true, true, true, allowance);
-    //     _;
-    // }
-
-    function create(address _sender, address _receiver, int96 _flowRate) external {
+    function startFlowSingle(address _sender, address _receiver, int96 _flowRate) external {
         token.createFlowFrom(_sender, _receiver, _flowRate);
+
+        emit streamStartedSingle(_sender, _receiver, _flowRate);
     }
 
-    function setPermissions(int96 allowance) external {
-        token.setFlowPermissions(address(this), true, true, true, allowance);
+
+    function startFlowMultiple(address _sender, address[] memory _receiver, int96 _flowRate) external {
+        
+        for(uint i =0; i<_receiver.length; i++) {
+             token.createFlowFrom(_sender, _receiver[i], _flowRate);
+        }
+
+        emit streamStartedMultiple( _sender, _receiver,  _flowRate);
+    }
+
+    function deleteFlowSingle(address _sender, address _receiver) external {
+        token.deleteFlowFrom(_sender, _receiver);
+
+        emit streamDeletedSingle(_sender, _receiver);
+    }
+
+    function deleteFlowMultiple(address _sender, address[] memory _receiver) external {
+        
+        for(uint i =0; i<_receiver.length; i++) {
+             token.deleteFlowFrom(_sender, _receiver[i]);
+        }
+
+        emit streamStartedMultiple(_sender, _receiver);
     }
 }

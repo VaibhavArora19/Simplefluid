@@ -1,6 +1,6 @@
 .page {
-    margin-top: 10%;
-    margin-left: 13%;
+    margin-top: 8%;
+    margin-left: 18%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 20px;
     width: 50%;
@@ -16,17 +16,50 @@
     font-weight: 600;
 }
 
+.flow {
+    width: 11rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    background-color: inherit;
+    border: 1px solid rgb(169, 166, 166);
+    padding-left: 5%;
+    display: inline-block;
+    margin-left: 17%;
+
+}
+
+.fields {
+    margin-left: 10%;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+}
+
+.fields div {
+    margin-right: 5%;
+}
+
 .page label {
     margin-left: 15%;
 }
 
-.page h2{
-    font-size: 1.2rem;
+.page h4{
+    font-size: 0.99rem;
     margin-top: 2%;
     margin-bottom: 2%;
 }
 
 
 .button {
-    margin-left: 27%;
+    margin-left: 2%;
+}
+
+.alert {
+    width: 60%;
+    margin-top: 5%;
+    margin-left: 13%;
+}
+
+.send {
+    margin-left: 14%;
 }

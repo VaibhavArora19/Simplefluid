@@ -1,4 +1,3 @@
-import { superTokenABI } from "../../constants";
 import { ethers } from "ethers";
 import {authorizeFullControl} from "../../components/SuperfluidPermissions";
 
