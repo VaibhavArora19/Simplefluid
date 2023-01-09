@@ -19,6 +19,7 @@ contract Simplefluid {
     event streamStartedMultiple(address sender, address[] receiver, int96 flowRate);
     event streamDeletedSingle(address sender, address receiver);
     event streamStartedMultiple(address sender, address[] receiver);
+    event flowStartedWithoutOperator(address sender, address receiver, int96 flowRate, bool isOperatorIncluded);
 
     using SuperTokenV1Library for ISuperToken;
     ISuperToken public token;
@@ -56,5 +57,13 @@ contract Simplefluid {
         }
 
         emit streamStartedMultiple(_sender, _receiver);
+    }
+
+    function createFlowWithoutOperator(address _sender, address _receiver, int96 _flowRate) external {
+        int96 flowRate = token.getFlowRate(_sender, _receiver);
+
+        if(flowRate != 0) {
+            emit flowStartedWithoutOperator(_sender, _receiver, flowRate, false);
+        }
     }
 }

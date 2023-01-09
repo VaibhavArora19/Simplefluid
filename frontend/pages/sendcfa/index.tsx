@@ -4,6 +4,7 @@ import { counterActions } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { useContract, useSigner, useAccount } from "wagmi";
 import { contractAddress, ABI } from "../../constants";
+import { createStream } from "../../components/SuperfluidPermissions/index";
 import styles from "../../styles/Cfa.module.css";
 
 type reduxState = {
@@ -45,12 +46,12 @@ const CFA = () => {
   const streamHandler = async () => {
 
     try {
-    if(currentAccounts.length <= 1){
-
+    if(currentAccounts.length === 1){
+        createStream(address, receiverAddress[0], flowRateRef?.current?.value);
     }else {
         let receiverAddresses: (string | null)[] = [];
 
-        if(receiverAddress != null) {
+        if(receiverAddress !== null) {
           for(let address of receiverAddress) {
             
             if(address?.length !== 42) {
@@ -59,7 +60,7 @@ const CFA = () => {
             receiverAddresses.push(address)
           }
             if(contract !== null) {
-              
+
               await contract.startFlowMultiple(address, receiverAddresses, flowRateRef?.current?.value)
             }
         }

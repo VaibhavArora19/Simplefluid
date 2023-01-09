@@ -6,6 +6,7 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
 
+//function to authorize full control to an operator
 export async function authorizeFullControl() {
     const sf = await Framework.create({
         chainId: 80001,
@@ -36,6 +37,8 @@ export async function authorizeFullControl() {
         }
     };
 
+
+//function to revoke full access given to an operator
 export async function revokeFullAccess() {
     const sf = await Framework.create({
         chainId: 80001,
@@ -69,6 +72,7 @@ export async function revokeFullAccess() {
 }
 
 
+//Function to give permissions to the operator based on the permission value
 export async function createOrRevokePermission(flowRate:string) {
     const sf = await Framework.create({
         chainId: 80001,
@@ -102,3 +106,51 @@ export async function createOrRevokePermission(flowRate:string) {
   console.error(error);
   }
 }
+
+
+
+//Function allowing user to create a single stream without any operator
+export async function createStream(sender: string | undefined, receiver: string | null, flowRate: string | undefined) {
+
+  const sf = await Framework.create({
+    chainId: 80001,
+    provider:provider
+  });
+
+  const DAIxContract = await sf.loadSuperToken("fDAIx");
+  const DAIx = DAIxContract.address;
+
+  if(receiver !== null && flowRate !== undefined) {
+  let flowOp = DAIxContract.createFlow({
+    sender,
+    receiver,
+    flowRate
+  });
+  await flowOp.exec(signer)
+}
+
+
+};
+
+
+//Deletes the ongoing flow, this function should be operated by user and not user
+export async function deleteFlow(sender: string | undefined, receiver: string | null) {
+
+  const sf = await Framework.create({
+    chainId: 80001,
+    provider:provider
+  });
+
+  const DAIxContract = await sf.loadSuperToken("fDAIx");
+
+  if(sender !== undefined && receiver !== null){
+
+    let flowOp = DAIxContract.deleteFlow({
+      sender,
+      receiver
+    });
+    
+    await flowOp.exec(signer);
+  }
+
+} 

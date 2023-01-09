@@ -1,0 +1,72 @@
+.form {
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    width: 69%;
+}
+
+.form h1 {
+    margin-left: 4%;
+    font-size: 1.4rem;
+    background-color: rgba(247, 177, 0, 0.179);
+    width: 170px;
+    border-radius:0 0 10px 10px;
+    color: #efc035;
+    padding-left: 15px;
+    margin-bottom: 50px;
+}
+
+.form label {
+    font-size: 20px;
+    padding-left: 34px;
+    display: block;
+}
+
+.operator {
+    width: 90%;
+    height: 45px;
+    border-radius: 10px;
+    margin-left: 35px;
+    margin-top: 1%;
+    margin-bottom: 4%;
+    padding-left: 8px;
+    border: 1px solid rgb(228, 220, 220);
+}
+
+.operator:focus {
+    outline: none !important;
+    border: 1px solid red;
+}
+
+.select {
+    margin-left: 35px;
+    margin-top: 1%;
+    width: 90%;
+    margin-bottom: 4%;
+    border: 1px solid rgb(228, 220, 220);
+}
+
+.select option {
+    font-size: 17px;
+}
+
+.token {
+    width: 100px;
+    margin-left: 33px;
+    color: green;
+}
+
+.single div{
+    display: inline-block;
+}
+
+.flowRate {
+    width: 75%;
+}
+
+.form button {
+    color: white;
+    margin-left: 35px;
+    width: 88%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
