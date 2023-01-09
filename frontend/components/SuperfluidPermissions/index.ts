@@ -7,7 +7,7 @@ const signer = provider.getSigner();
 
 
 //function to authorize full control to an operator
-export async function authorizeFullControl() {
+export async function authorizeFullControl(operator: string) {
     const sf = await Framework.create({
         chainId: 80001,
         provider:provider
@@ -20,7 +20,7 @@ export async function authorizeFullControl() {
             const updateFlowOperatorOperation =
               sf.cfaV1.authorizeFlowOperatorWithFullControl({
                 superToken: DAIx,
-                flowOperator: contractAddress,
+                flowOperator: operator,
               });
 
               console.log("Updating your flow permissions...");
@@ -29,7 +29,7 @@ export async function authorizeFullControl() {
               console.log(result);
      
               console.log(
-                `Congrats - you've just authorized flow permissions for 0xDCB45e4f6762C3D7C61a00e96Fb94ADb7Cf27721`
+                `Congrats - you've just authorized flow permissions`
               );
         }
         catch(error) {
@@ -39,7 +39,7 @@ export async function authorizeFullControl() {
 
 
 //function to revoke full access given to an operator
-export async function revokeFullAccess() {
+export async function revokeFullControl(operator: string) {
     const sf = await Framework.create({
         chainId: 80001,
         provider:provider
@@ -52,7 +52,7 @@ export async function revokeFullAccess() {
         const updateFlowOperatorOperation =
           sf.cfaV1.revokeFlowOperatorWithFullControl({
             superToken: DAIx,
-            flowOperator: contractAddress,
+            flowOperator: operator,
           });
 
         console.log("Revoking your flow permissions...");
@@ -61,7 +61,7 @@ export async function revokeFullAccess() {
         console.log(result);
 
         console.log(
-          `Congrats - you've just revoked  flow permissions for 0xDCB45e4f6762C3D7C61a00e96Fb94ADb7Cf27721`
+          `Congrats - you've just revoked  flow permissions`
         );
       } catch (error) {
         console.log(
@@ -73,7 +73,7 @@ export async function revokeFullAccess() {
 
 
 //Function to give permissions to the operator based on the permission value
-export async function createOrRevokePermission(flowRate:string) {
+export async function createOrRevokePermission(flowRate:string, operator:string, permission: number) {
     const sf = await Framework.create({
         chainId: 80001,
         provider:provider
@@ -85,8 +85,8 @@ export async function createOrRevokePermission(flowRate:string) {
     try {
     const updateFlowOperatorOperation =
     sf.cfaV1.updateFlowOperatorPermissions({
-      flowOperator: contractAddress,
-      permissions: 1, //change this later there are in total 7 permissions
+      flowOperator: operator,
+      permissions: permission, //change this later there are in total 7 permissions
       flowRateAllowance: flowRate,
       superToken: DAIx,
     });
@@ -97,7 +97,7 @@ export async function createOrRevokePermission(flowRate:string) {
   console.log(result);
 
   console.log(
-    `Congrats - you've just updated flow permissions for 0xDCB45e4f6762C3D7C61a00e96Fb94ADb7Cf27721`
+    `Congrats - you've just updated flow permissions`
   );
 } catch (error) {
   console.log(

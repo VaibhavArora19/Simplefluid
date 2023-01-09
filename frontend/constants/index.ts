@@ -1,4 +1,16 @@
 export const contractAddress = "0xd26d4CE5e6d3c8d727B8b6E4c9466CC757d46A96"
+
+export const permissions = {
+	"Create": 1,
+	"Update": 2,
+	"Create or Update":3,
+	"Delete":4,
+	"Create or Delete": 5,
+	"Delete or Update": 6,
+	"Create Update or Delete": 7
+};
+
+
 export const ABI = [
 	{
 		"inputs": [

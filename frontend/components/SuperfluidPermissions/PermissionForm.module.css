@@ -6,11 +6,11 @@
 
 .form h1 {
     margin-left: 4%;
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     background-color: rgba(247, 177, 0, 0.179);
-    width: 170px;
+    width: 150px;
     border-radius:0 0 10px 10px;
-    color: #efc035;
+    color: #bf920b;
     padding-left: 15px;
     margin-bottom: 50px;
 }
@@ -34,7 +34,7 @@
 
 .operator:focus {
     outline: none !important;
-    border: 1px solid red;
+    border: 1px solid #efc035;
 }
 
 .select {
