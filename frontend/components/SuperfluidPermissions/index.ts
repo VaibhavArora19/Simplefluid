@@ -1,6 +1,5 @@
 import {ethers} from "ethers";
 import { Framework } from "@superfluid-finance/sdk-core";
-import { contractAddress } from "../../constants";
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
@@ -8,7 +7,7 @@ const signer = provider.getSigner();
 
 //function to authorize full control to an operator
 export async function authorizeFullControl(operator: string) {
-    const sf = await Framework.create({
+  const sf = await Framework.create({
         chainId: 80001,
         provider:provider
     });

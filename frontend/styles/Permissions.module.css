@@ -7,3 +7,40 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-top: 10px;
+    color: rgb(139, 137, 137);
+}
+
+.top h3 {
+    padding-left: 46px;
+}
+
+.view {
+    margin-left: 6%;
+    margin-top: 8%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    width: 75%;
+    
+}
+
+.info {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.info h1 {
+    margin-left: 4%;
+    background-color: rgba(247, 177, 0, 0.179);
+    width: 180px;
+    color: #bf920b;
+    font-size: 1.25rem;
+    border-radius:0 0 10px 10px;
+    padding-left: 15px;
+    margin-bottom: 50px;
+}

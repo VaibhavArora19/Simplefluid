@@ -20,10 +20,15 @@ contract Simplefluid {
     event streamDeletedSingle(address sender, address receiver);
     event streamStartedMultiple(address sender, address[] receiver);
     event flowStartedWithoutOperator(address sender, address receiver, int96 flowRate, bool isOperatorIncluded);
+    event permissionGrants(uint accessIndex, address operator, address sender, string permissionType, bool isRevoked);
 
     using SuperTokenV1Library for ISuperToken;
     ISuperToken public token;
     
+    uint public totalAccesses;
+
+    mapping(bytes32 => uint) public permissionIndex;
+
     constructor(ISuperToken _token) {
         token = _token;
     }
@@ -66,4 +71,22 @@ contract Simplefluid {
             emit flowStartedWithoutOperator(_sender, _receiver, flowRate, false);
         }
     }
+
+    function grantAccess(address _operator, address _sender, string calldata _type) external {
+        totalAccesses += 1;
+
+        bytes32 memory permissionHash = keccak256(abi.encodePacked(_operator, _sender, _type));
+
+        permissionIndex[permissionHash] = totalAccesses;
+
+        emit permissionGrants(totalAcesses, _operator, _sender, _type, false);
+    }
+
+    function revokeAccess(address _operator, address _sender, string calldata _type) external {
+        bytes32 memory permissionHash = keccak256(abi.encodePacked(_operator, _sender, _type));
+
+        uint grantIndex = permissionIndex[permissionHash];
+
+        emit permissionGrants(grantIndex, _operator, _sender, _type, true);
+    } 
 }

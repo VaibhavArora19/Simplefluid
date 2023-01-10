@@ -1,19 +1,27 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { permissions } from "../../constants";
 import { createOrRevokePermission, authorizeFullControl, revokeFullControl } from "./index";
+import { contractAddress, ABI } from "../../constants";
+import { useAccount, useContract } from "wagmi";
 import Link from "next/link";
 import classes from "./PermissionForm.module.css";
 
 const PermissionForm = () => {
     const [operatorAddress, setOperatorAddress] = useState<string>('');
-    const [permission, setPermission] = useState<string | number>('');
+    const [permission, setPermission] = useState<string>('');
     const [flowRate, setFlowRate] = useState<string>('');
+    const { address } = useAccount();
+
+    const contract = useContract({
+      address: contractAddress,
+      abi: ABI
+    })
 
     const permissionHandler = (event: ChangeEvent<HTMLSelectElement>) => {
         setPermission(event.target.value);
     }
 
-    const setPermissionHandler = (event: FormEvent<HTMLFormElement>) => {
+    const setPermissionHandler = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if(permission === '') return;
@@ -23,10 +31,13 @@ const PermissionForm = () => {
         if(permission !== 'Grant Full Control' && permission !== 'Revoke Full Control') {
 
             const permissionValue = permissions[permission];
-            createOrRevokePermission(flowRate, operatorAddress, Number(permission));
+            createOrRevokePermission(flowRate, operatorAddress, Number(permissionValue));
+
+            await contract?.grantAccess(operatorAddress, address, permission);
            
         }else if(permission === 'Grant Full Control'){
             authorizeFullControl(operatorAddress);
+            await contract?.grantAccess(operatorAddress, address, 'Full Control');
 
         }else if(permission === 'Revoke Full Control') {
             revokeFullControl(operatorAddress)
@@ -90,7 +101,7 @@ const PermissionForm = () => {
       </form>
     </div>
         <div style={{marginTop:"5%", marginLeft:"27%"}}>
-            <Link href ="" className="link link-warning">View permissions</Link>
+            <Link href ="/permissions/view" className="link link-warning">View permissions</Link>
         </div>
     </div>
   );
