@@ -1,0 +1,41 @@
+.form {
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    width: 69%;
+}
+
+.form label {
+    font-size: 20px;
+    padding-left: 34px;
+    display: block;
+}
+
+.form h1 {
+    margin-left: 4%;
+    background-color: rgba(247, 177, 0, 0.179);
+    width: 80px;
+    color: #bf920b;
+    font-size: 1.25rem;
+    border-radius:0 0 10px 10px;
+    padding-left: 25px;
+    margin-bottom: 50px;
+}
+
+.index {
+    width: 90%;
+    height: 45px;
+    border-radius: 10px;
+    margin-left: 35px;
+    margin-top: 1%;
+    margin-bottom: 4%;
+    padding-left: 8px;
+    border: 1px solid rgb(228, 220, 220);
+}
+
+.form button {
+    color: white;
+    margin-left: 42px;
+    width: 88%;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}

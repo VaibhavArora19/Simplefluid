@@ -30,8 +30,8 @@ const Sidebar = (): JSX.Element => {
             <h2><i className="fa-regular fa-square-arrow-up-right"></i>&nbsp;&nbsp; Send tokens (CFA)</h2>
           </Link>
         </div>
-        <div className={router.pathname === "/sendIDA" ? classes.linkActive : classes.link}>
-          <Link href="">
+        <div className={router.pathname === "/IDA" ? classes.linkActive : classes.link}>
+          <Link href="/IDA">
             <h2><i className="fa-regular fa-send-back"></i>&nbsp;&nbsp; Send tokens (IDA)</h2>
           </Link>
         </div>

@@ -30,6 +30,7 @@ const PermissionForm = () => {
 
         if(permission !== 'Grant Full Control' && permission !== 'Revoke Full Control') {
 
+          // @ts-ignore
             const permissionValue = permissions[permission];
             createOrRevokePermission(flowRate, operatorAddress, Number(permissionValue));
 
@@ -37,17 +38,18 @@ const PermissionForm = () => {
            
         }else if(permission === 'Grant Full Control'){
             authorizeFullControl(operatorAddress);
-            await contract?.grantAccess(operatorAddress, address, 'Full Control');
+            await contract?.grantAccess(operatorAddress, address, 'Grant Full Control');
 
         }else if(permission === 'Revoke Full Control') {
-            revokeFullControl(operatorAddress)
+            revokeFullControl(operatorAddress);
+            await contract?.revokeAccess(operatorAddress, address, 'Revoke Full Control')
         }
     }
 
   return (
     <div>
     <div className={`${classes.form}`}>
-      <div className={classes.heading}>
+      <div>
         <h1>Set Permission</h1>
       </div>
       <form onSubmit={setPermissionHandler}>

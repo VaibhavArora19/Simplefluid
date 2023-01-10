@@ -1,6 +1,7 @@
 import {ethers} from "ethers";
 import { Framework } from "@superfluid-finance/sdk-core";
 
+// @ts-ignore
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
