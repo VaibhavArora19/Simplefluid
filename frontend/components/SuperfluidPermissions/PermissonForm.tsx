@@ -21,6 +21,42 @@ const PermissionForm = () => {
         setPermission(event.target.value);
     }
 
+    const storePermissions = async (operatorAddress: string, sender: string | undefined, permissionType: string) => {
+
+      if(permissionType !== 'Revoke Full Control') {
+      const data = await fetch('http://localhost:8080/grantPermission', {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+          operatorAddress,
+          sender,
+          permissionType
+        })
+      });
+
+      const res = await data.json();
+      console.log(res);
+
+    }else if(permissionType === 'Revoke Full Control') {
+      const data = await fetch('http://localhost:8080/revokePermission', {
+        method:"POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          operatorAddress,
+          sender
+        })
+      });
+
+      const res = await data.json();
+      console.log(res);
+    }
+
+    }
+
     const setPermissionHandler = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -34,15 +70,18 @@ const PermissionForm = () => {
             const permissionValue = permissions[permission];
             createOrRevokePermission(flowRate, operatorAddress, Number(permissionValue));
 
-            await contract?.grantAccess(operatorAddress, address, permission);
+            // await contract?.grantAccess(operatorAddress, address, permission);
+            storePermissions(operatorAddress, address, permission);
            
         }else if(permission === 'Grant Full Control'){
-            authorizeFullControl(operatorAddress);
-            await contract?.grantAccess(operatorAddress, address, 'Grant Full Control');
+            // authorizeFullControl(operatorAddress);
+            // await contract?.grantAccess(operatorAddress, address, 'Grant Full Control');
+            storePermissions(operatorAddress, address, "Grant Full Control");
 
         }else if(permission === 'Revoke Full Control') {
             revokeFullControl(operatorAddress);
-            await contract?.revokeAccess(operatorAddress, address, 'Revoke Full Control')
+            // await contract?.revokeAccess(operatorAddress, address, 'Revoke Full Control')
+            storePermissions(operatorAddress, address, "Revoke Full Control");
         }
     }
 
@@ -77,7 +116,7 @@ const PermissionForm = () => {
         <option>Revoke Full Control</option>
       </select>
       <div className={classes.single}>
-        {  (permission !== 'Grant Full Access' && permission !== 'Revoke Full Access') &&
+        {  (permission !== 'Grant Full Control' && permission !== 'Revoke Full Control') &&
           <div className={classes.flowRate}>
           <label>Flow Rate</label>
           <input

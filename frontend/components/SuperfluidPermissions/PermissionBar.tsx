@@ -1,18 +1,34 @@
 import Image from "next/image";
+import { useAccount } from "wagmi";
 import classes from "./PermissionBar.module.css";
 
-const PermissionBar = ()=> {
-    let address = '0x5e97BBfb258fBb110231c4f01C693ef6BA9553a6';
+type IProps = {
+    operatorAddress: string;
+    permissions: [string];
+};
+
+
+const PermissionBar = (props: IProps)=> {
+    const {address} = useAccount();
+
+    const revokePermissionHandler = async () => {
+
+        const data = await fetch(`http://localhost:8080/${address}`);
+
+        const res = await data.json();
+        console.log(res);
+    };
+    
     return (
         <div className={classes.bar}>
             <div className={classes.user}>
                 <Image className={classes.img} src={"/user0.avif"} width={"40"} height={"40"} alt="User PFP"/>
-                <h3>{`${address.substr(0,6)}...${address.substr(38, 43)}`}</h3>
+                <h3>{`${props.operatorAddress.substr(0,6)}...${props.operatorAddress.substr(38, 43)}`}</h3>
             </div>
             <div className={classes.type}>
-                Create
+                {props.permissions.length > 1 ? `${props.permissions[0], "+", props.permissions.length-1}`: props.permissions[0]} 
             </div>
-            <div className={classes.cross}>
+            <div className={classes.cross} onClick={revokePermissionHandler}>
                 <h4 style={{fontSize:"22px"}}><i className="fa-sharp fa-solid fa-circle-xmark"></i></h4>
             </div>
         </div>
