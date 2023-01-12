@@ -1,11 +1,12 @@
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
 
-// @ts-ignore
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
 
 export async function createIndex(indexId: string | undefined) {
+    // @ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
     const sf = await Framework.create({
         chainId:80001,
         provider
@@ -40,6 +41,10 @@ export async function createIndex(indexId: string | undefined) {
 };
 
 export async function updateSubscription(indexId: string, subscriber: string, units: string) {
+    // @ts-ignore 
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    
     const sf = await Framework.create({
         chainId:80001,
         provider
@@ -75,6 +80,10 @@ export async function updateSubscription(indexId: string, subscriber: string, un
 }
 
 export async function distribute(indexId: string, amount: string) {
+    // @ts-ignore 
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    
     const sf = await Framework.create({
         chainId:80001,
         provider
