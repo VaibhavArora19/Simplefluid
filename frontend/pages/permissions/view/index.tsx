@@ -23,7 +23,6 @@ const ViewPermissions = () => {
         })();
 
     }, []);
-    console.log('p is', permission);
     return (
         <div className={styles.view}>
             {permission.length > 0 ?

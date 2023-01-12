@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require('mongoose');
 
-const Permission = require("./schema");
+const {Permission, Ida} = require("./schema");
 
 const app = express();
 
@@ -73,6 +73,46 @@ app.post('/revokePermission', async (req, res, next) => {
     const deletePermission = await Permission.deleteOne({operatorAddress: operatorAddress, sender: sender}); 
 
     res.json('Permission deleted Sucessfully');
+});
+
+app.post('/createIndex', async (req, res, next) => {
+    const { indexId, creator } = req.body;
+
+    const checkIda = await Ida.findOne({indexId});
+
+    if(checkIda !== null) {
+        res.json('IDA already exists');
+        return;
+    }
+
+    const newIDA = new Ida({
+        creator,
+        indexId 
+    });
+
+    newIDA.save();
+
+    res.json('IDA created successfuly');
+});
+
+app.get('/totalIda/:creator', async(req, res, next) => {
+    
+    let { creator } = req.params;
+
+    const idaArray = await Ida.find({creator});
+
+    if(idaArray === null){
+        res.json('No index exists');
+        return;
+    }
+
+    res.json(idaArray);
+
+});
+
+app.post('/addSubscribers', async (req, res, next) => {
+
+    // const {indexId, subscriber}
 });
 
 

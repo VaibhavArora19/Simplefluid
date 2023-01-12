@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { permissions } from "../../constants";
 import { createOrRevokePermission, authorizeFullControl, revokeFullControl } from "./index";
 import { contractAddress, ABI } from "../../constants";

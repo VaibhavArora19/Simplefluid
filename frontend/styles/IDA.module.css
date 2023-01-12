@@ -2,3 +2,40 @@
     margin-top: 12%;
     margin-left: 14%;
 }
+
+.bar {
+    margin-right: 32px;
+    margin-top: 8%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    width: 75%;
+}
+
+.link {
+    margin-left: 30%;
+    margin-top: 15%;
+}
+
+.info {
+    width: 90%;
+    margin-left: 5%;   
+}
+
+.logo{
+    margin-left: 4%;
+    background-color: rgba(247, 177, 0, 0.179);
+    width: 180px;
+    color: #bf920b;
+    font-size: 1.25rem;
+    border-radius:0 0 10px 10px;
+    padding-left: 40px;
+    margin-bottom: 50px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-top: 10px;
+    color: rgb(139, 137, 137);
+}

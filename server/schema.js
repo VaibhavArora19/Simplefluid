@@ -8,6 +8,18 @@ const permissionSchema = new Schema({
     isRevoked: Boolean
 });
 
-const Permission = mongoose.model('Permission', permissionSchema);
+const idaSchema = new Schema({
+    creator: String,
+    indexId: String,
+    subscribers: [String],
+    units: String,
+    isDistributed: Boolean
+})
 
-module.exports = Permission;
+const Permission = mongoose.model('Permission', permissionSchema);
+const Ida = mongoose.model('Ida', idaSchema);
+
+module.exports = {
+    Permission,
+    Ida
+};

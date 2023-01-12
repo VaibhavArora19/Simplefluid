@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
-export async function createIndex(indexId: string) {
+export async function createIndex(indexId: string | undefined) {
     const sf = await Framework.create({
         chainId:80001,
         provider
@@ -14,21 +14,24 @@ export async function createIndex(indexId: string) {
     const fDAIx = await sf.loadSuperToken("fDAIx");
 
     try {
-        const createIndexOperation = fDAIx.createIndex({
-            indexId: indexId
-        });
+        if(indexId !== undefined) {
 
-        console.log('Creating your index....');
-
-        await createIndexOperation.exec(signer);
-
-        console.log(
-            `Congrats - you've just created a new Index!
-             Network: Mumbai
-             Super Token: DAIx
-             Index ID: ${indexId}
-          `
-          );
+              const createIndexOperation = fDAIx.createIndex({
+                indexId: indexId
+            });
+            
+            console.log('Creating your index....');
+            
+            await createIndexOperation.exec(signer);
+            
+            console.log(
+                `Congrats - you've just created a new Index!
+                Network: Mumbai
+                Super Token: DAIx
+                Index ID: ${indexId}
+                `
+                );
+        }
 
     }
     catch(err) {
@@ -47,8 +50,8 @@ export async function updateSubscription(indexId: string, subscriber: string, un
     try {
         const updateSubscriptionOperation = fDAIx.updateSubscriptionUnits({
             indexId,
-            subscriber: '0xf9739cF1B992E62a1C5c18C33cacb2a27a91F888',
-            units: '3'
+            subscriber: subscriber,
+            units: units
         });
 
         console.log('Updating your index...');

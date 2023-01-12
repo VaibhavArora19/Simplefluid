@@ -1,0 +1,31 @@
+.bar {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(228, 220, 220);
+    margin-bottom: 18px;
+}
+
+.bar h2 {
+    padding-left: 74px;
+}
+
+.pending {
+    color: #bf920b;
+    background-color: rgba(247, 177, 0, 0.179);
+    width: 150px;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    padding-left: 45px;
+    padding-top: 5px;
+}
+
+.deposited {
+    color: #3ebf0b;
+    background-color: rgba(56, 226, 30, 0.179);
+    width: 150px;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    padding-left: 45px;
+    padding-top: 5px;   
+}
