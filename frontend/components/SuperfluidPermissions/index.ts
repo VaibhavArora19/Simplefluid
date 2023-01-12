@@ -1,13 +1,13 @@
 import {ethers} from "ethers";
 import { Framework } from "@superfluid-finance/sdk-core";
 
-// @ts-ignore
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
-
-
 //function to authorize full control to an operator
 export async function authorizeFullControl(operator: string) {
+  
+  // @ts-ignore
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  
   const sf = await Framework.create({
         chainId: 80001,
         provider:provider
@@ -40,6 +40,9 @@ export async function authorizeFullControl(operator: string) {
 
 //function to revoke full access given to an operator
 export async function revokeFullControl(operator: string) {
+    // @ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
     const sf = await Framework.create({
         chainId: 80001,
         provider:provider
@@ -74,6 +77,9 @@ export async function revokeFullControl(operator: string) {
 
 //Function to give permissions to the operator based on the permission value
 export async function createOrRevokePermission(flowRate:string, operator:string, permission: number) {
+    // @ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
     const sf = await Framework.create({
         chainId: 80001,
         provider:provider
@@ -112,6 +118,10 @@ export async function createOrRevokePermission(flowRate:string, operator:string,
 //Function allowing user to create a single stream without any operator
 export async function createStream(sender: string | undefined, receiver: string | null, flowRate: string | undefined) {
 
+    // @ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
   const sf = await Framework.create({
     chainId: 80001,
     provider:provider
@@ -136,6 +146,10 @@ export async function createStream(sender: string | undefined, receiver: string 
 //Deletes the ongoing flow, this function should be operated by user and not user
 export async function deleteFlow(sender: string | undefined, receiver: string | null) {
 
+    // @ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    
   const sf = await Framework.create({
     chainId: 80001,
     provider:provider
