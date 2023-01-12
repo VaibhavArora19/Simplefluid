@@ -4,6 +4,7 @@ import CfaPage from "../components/Superfluid/CfaPage";
 import CFA from "../pages/sendcfa";
 
 let initialState = {
+    // @ts-ignore
     totalAccounts: [<CfaPage />]
 };
 
@@ -13,6 +14,7 @@ const counterSlice = createSlice({
     reducers:{
         increment(state) {
             return {
+                // @ts-ignore
                 totalAccounts: [...state.totalAccounts, <CfaPage />]
             }
         },
