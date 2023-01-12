@@ -40,9 +40,9 @@ const ViewPermissions = () => {
                     <h4>Revoke</h4>
                 </div>
             </div>
-            {permission.map(singlePermission => {
+            {permission.map((singlePermission, index) => {
                 //@ts-ignore
-                return <PermissionBar operatorAddress={singlePermission?.operatorAddress} permissions={singlePermission?.permissions} />
+                return <PermissionBar key={index} operatorAddress={singlePermission?.operatorAddress} permissions={singlePermission?.permissions} />
             })}
             </>
             </div>
