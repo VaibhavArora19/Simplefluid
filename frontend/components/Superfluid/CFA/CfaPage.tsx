@@ -34,10 +34,6 @@ const CfaPage = (props:IProps) => {
 
   return (
     <div className={classes.page}>
-      <span>
-      <i className="lni lni-money-protection"></i>&nbsp;{props.id}
-      </span>
-        <div className={classes.input}>
           <input
             type="text"
             placeholder="Receiver public address"
@@ -45,10 +41,9 @@ const CfaPage = (props:IProps) => {
             value={address}
             onChange={addressHandler}
           />{" "}
-        </div>
-      <button onClick={decrementHandler}>
+      <span onClick={decrementHandler}>
         <i className="fa-light fa-circle-xmark fa-2x"></i>
-      </button>
+      </span>
     </div>
   );
 };

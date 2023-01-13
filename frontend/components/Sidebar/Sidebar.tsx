@@ -35,19 +35,14 @@ const Sidebar = (): JSX.Element => {
             <h2><i className="fa-regular fa-send-back"></i>&nbsp;&nbsp; Send tokens (IDA)</h2>
           </Link>
         </div>
-        <div className={router.pathname === "/lend" ? classes.linkActive : classes.link}>
-          <Link href="">
-            <h2><i className="fa-regular fa-landmark"></i>&nbsp;&nbsp; Lend</h2>
-          </Link>
-        </div>
-        <div className={router.pathname === "/borrow" ? classes.linkActive : classes.link}>
-          <Link href="">
-            <h2><i className="fa-solid fa-money-check"></i>&nbsp;&nbsp; Borrow</h2>
-          </Link>
-        </div>
         <div className={router.pathname === "/permissions" ? classes.linkActive : classes.link}>
           <Link href="/permissions">
             <h2><i className="fa-solid fa-binary-circle-check"></i>&nbsp;&nbsp; Permissions</h2>
+          </Link>
+        </div>
+        <div className={router.pathname === "/automate" ? classes.linkActive : classes.link}>
+          <Link href="/automate">
+            <h2><i className="fa-regular fa-laptop-code"></i>&nbsp;&nbsp; Automate</h2>
           </Link>
         </div>
       </div>

@@ -5,31 +5,30 @@
 }
 
 .addresses {
-    width: 23.5rem;
-    height: 3.2rem;
+    width: 75%;
+    height: 45px;
     border-radius: 10px;
-    background-color: inherit;
-    border: 1px solid rgb(169, 166, 166);
-    padding-left: 5%;
-    display: inline-block;
+    margin-left: 35px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-left: 8px;
+    border: 1px solid rgb(228, 220, 220);
 
-}
-
-.input {
-    margin-right: 30px;
 }
 
 .page span {
     display: inline-block;
     font-size: 1.1rem;
-    margin-top: 12px;   
+    margin-top: 12px;
+    cursor: pointer;   
 }
 
-.page input:focus {
-    border: 1px solid rgb(154, 44, 44);
+.addresses:focus {
+    outline: none !important;
+    border: 1px solid #efc035;
 }
 
-.page button {
+.page span {
     color: rgb(207, 34, 34);
     position: relative;
     right: 40px;

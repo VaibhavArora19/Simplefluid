@@ -24,16 +24,20 @@ const IdaIndex = () => {
     })
   };
 
-  const removeFieldHandler = () => {
+  const removeFieldHandler = (subscriber: string, shares: string) => {
     setTotalSubscribers(prevValue => {
         return [...prevValue.slice(0, prevValue.length-1)]
     });
+    if(subscriber !== '') {
     setSubscribers(prevValue => {
         return [...prevValue.slice(0, prevValue.length-1)]
     });
+    }
+    if(shares !== '') {
     setShares(prevValue => {
         return [...prevValue.slice(0, prevValue.length-1)]
     })
+    }
   };
 
   const updateShares = (share: string, index: number) => {

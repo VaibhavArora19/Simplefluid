@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import CfaPage from "../../components/Superfluid/CFA/CfaPage";
 import { counterActions } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,18 +15,31 @@ type reduxState = {
 
 const CFA = () => {
   const [isMultiple, setIsMultiple] = useState<boolean>(false);
-  const [receiverAddress, setReceiverAddress] = useState<Array<string|null>>([]);
+  const [receiverAddress, setReceiverAddress] = useState<Array<string | null>>(
+    []
+  );
+  const [showAlert, setShowAlert] = useState(true);
   const dispatch = useDispatch();
-  const currentAccounts = useSelector((state: reduxState) => state.counter.totalAccounts);
-  const {data: signer} = useSigner();
+  const currentAccounts = useSelector(
+    (state: reduxState) => state.counter.totalAccounts
+  );
+  const { data: signer } = useSigner();
   const { address } = useAccount();
   const flowRateRef = useRef<HTMLInputElement>(null);
 
   const contract = useContract({
     address: contractAddress,
     abi: ABI,
-    signerOrProvider: signer
+    signerOrProvider: signer,
   });
+
+  useEffect(() => {
+    
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+
+  }, []);
 
   const incrementHandler = () => {
     if (isMultiple === false) {
@@ -38,42 +51,40 @@ const CFA = () => {
 
   const updateReceiverAddress = (updatedAddress: string, id: number) => {
     let allAddresses = receiverAddress;
-    allAddresses[id-1] = updatedAddress;
+    allAddresses[id - 1] = updatedAddress;
     setReceiverAddress(allAddresses);
-    
-  }
+  };
 
   const streamHandler = async () => {
-
     try {
-    if(currentAccounts.length === 1){
+      if (currentAccounts.length === 1) {
         createStream(address, receiverAddress[0], flowRateRef?.current?.value);
-    }else {
+      } else {
         let receiverAddresses: (string | null)[] = [];
 
-        if(receiverAddress !== null) {
-          for(let address of receiverAddress) {
-            
-            if(address?.length !== 42) {
+        if (receiverAddress !== null) {
+          for (let address of receiverAddress) {
+            if (address?.length !== 42) {
               continue;
             }
-            receiverAddresses.push(address)
+            receiverAddresses.push(address);
           }
-            if(contract !== null) {
-
-              await contract.startFlowMultiple(address, receiverAddresses, flowRateRef?.current?.value)
-            }
+          if (contract !== null) {
+            await contract.startFlowMultiple(
+              address,
+              receiverAddresses,
+              flowRateRef?.current?.value
+            );
+          }
         }
-        
-    }
-    } catch(error) {
-
+      }
+    } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
-    <div>
+    <>{showAlert &&
       <div className={`alert alert-info shadow-lg ${styles.alert}`}>
         <div>
           <svg
@@ -94,54 +105,57 @@ const CFA = () => {
             contract.
           </span>
         </div>
-      </div>
+      </div> }
       <div className={styles.page}>
         <h1>Send Stream</h1>
-        <label className="label">
-          <h4 className="label-text">Receiver public Address</h4>
-        </label>
+        <label>Receiver public Address</label>
         <div>
-          {currentAccounts.map((page, index) => {
-            return <CfaPage key={index} id={index + 1} update={updateReceiverAddress}/>;
+          {currentAccounts.map((_, index) => {
+            return (
+              <CfaPage
+                key={index}
+                id={index + 1}
+                update={updateReceiverAddress}
+              />
+            );
           })}
         </div>
-        <div className={`form-control w-full max-w-xs ${styles.fields}`}>
-          <div>
-          <label className="label">
-            <span className="label-text">Flow Rate</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Flow Rate/month"
-            className={`input input-bordered w-full max-w-xs ${styles.flow}`}
-            ref={flowRateRef}
-          />
+        <div className={styles.fields}>
+          <div className={styles.flowRate}>
+            <label>Flow Rate</label>
+            <input
+              type="text"
+              placeholder="Flow Rate/second"
+              className={`${styles.flow}`}
+              ref={flowRateRef}
+            />
           </div>
           <div>
-          <label className="label">
-            <span className="label-text">Super token</span>
-          </label>
-          <input
-            type="text"
-            placeholder="fDAIx"
-            className={`input input-bordered w-full max-w-xs ${styles.flow}`}
-            disabled
-          />
+            <label>Super token</label>
+            <input
+              type="text"
+              placeholder="fDAIx"
+              className={`input input-bordered w-full max-w-xs ${styles.token}`}
+              disabled
+            />
           </div>
         </div>
-        <div>
-          <button className={`btn btn-outline btn-success ${styles.send}`} onClick={streamHandler}>
-            Start streaming
-          </button>
-          <button
-            className={`btn btn-warning ${styles.button}`}
+        <div style={{paddingBottom:"3%", marginTop:"3%"}}>
+        <button
+            className={`btn btn-info ${styles.button}`}
             onClick={incrementHandler}
           >
             <i className="fa-regular fa-user-plus"></i>&nbsp;Add wallet address
           </button>
+          <button
+            className={`btn btn-warning ${styles.send}`}
+            onClick={streamHandler}
+          >
+            Start streaming
+          </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

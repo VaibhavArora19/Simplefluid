@@ -3,7 +3,7 @@ import classes from "./IDASubscribers.module.css";
 
 type IProps = {
     id: number;
-    remove:() => void;
+    remove:(subscriber: string, shares: string) => void;
     updateSubscriber(newAddress: string, id:number):void;
     updateShares(newShares: string, id:number):void;
 }
@@ -14,7 +14,7 @@ const IdaSubscribers = (props:IProps) => {
 
     const removeHandler = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         event.preventDefault();
-        props.remove();
+        props.remove(subscriber, shares);
     };
 
     const updateSubscriberHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
