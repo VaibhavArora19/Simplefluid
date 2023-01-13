@@ -1,7 +1,7 @@
 .card {
     border-radius: 20px;
     box-shadow: rgba(133, 133, 133, 0.2) 0px 2px 8px 0px;
-    width: 340px;
+    width: 370px;
     height: 180px;
     text-align: center;
     margin-bottom: 8%;
@@ -15,39 +15,62 @@
 }
 
 .animation {
-    margin-top: 10%;
-    margin-left: 38%;
-    display: flex;
-    flex-direction: row;
+    margin-top: 4%;
 }
 
-.animate {
-    border-radius: 50px;
-    border: 1px solid green;
-    border-style: dashed;
-    animation-name: Rotate;
-    animation-duration: 0.8s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    -moz-animation-name: Rotate;
-    -moz-animation-duration: 2s;
-    -moz-animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    -ms-animation-name: Rotate;
-    -ms-animation-duration: 2s;
-    -ms-animation-iteration-count: infinite;
-    animation-timing-function: linear;
+.coins {
+    margin-top: 4%;
 }
 
-@keyframes Rotate{
-    0% {
-        transform:rotate(0deg);
+.third {
+    width: 43px;
+    position: relative;
+    left: 170px;
+    font-size: 1.4rem;
+    color: #29bf0b;
+    animation: rotation 5s infinite linear;
+}
+
+
+.fourth {
+    color: green;
+    font-size: 1.8rem;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
     }
-    100% {
-        transform:rotate(360deg);
+    to {
+      transform: rotate(359deg);
     }
+  }
+
+
+.logo {
+    color:green;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0 5%;
+    position: relative;
+    top:3px;
 }
 
+.coin {
+    display: inline-block;
+}
+
+.side {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.side div {
+    display: inline-block;
+}
+
+.animation div {
+    display: inline-block;
+}
 .card:hover {
     box-shadow: rgba(93, 126, 140, 0.12) 0px 2px 4px 0px, rgba(78, 114, 129, 0.32) 0px 2px 16px 0px;
 }

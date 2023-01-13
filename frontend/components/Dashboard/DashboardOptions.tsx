@@ -16,10 +16,10 @@ const DashboardOptions = () => {
                     <h1>Track your streamable money!</h1>
                     <h4>All of your superfluid stream in one place!!</h4> 
                 <div className={`grid grid-cols-2 ${classes.options}`}>
-                    <Card heading="View streams (CFA)" description="View all of your CFA streams"/>
-                    <Card heading="View streams (IDA)" description="View all of your IDA streams"/>
-                    <Card heading="Lend" description="View your lending streams"/>
-                    <Card heading="Borrow" description="View the amount you've borrowed"/>
+                    <Card heading="View streams (CFA)" description="View all of your CFA streams" position="first"/>
+                    <Card heading="View streams (IDA)" description="View all of your IDA streams" position="second"/>
+                    <Card heading="Permissions" description="Allow someone else to create your streams" position="third"/>
+                    <Card heading="Automate" description="Automate your programmable money" position="fourth"/>
                 </div>
                 </div>
                 :
