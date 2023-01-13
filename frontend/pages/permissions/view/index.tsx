@@ -3,9 +3,6 @@ import { useAccount } from "wagmi";
 import PermissionBar from "../../../components/SuperfluidPermissions/PermissionBar";
 import styles from "../../../styles/Permissions.module.css";
 
-interface InputWrapperProps {
-    children?: JSX.Element | JSX.Element[]
-}
 
 const ViewPermissions = () => {
     const [permission, setPermission] = useState<Array<object>>([])

@@ -1,4 +1,4 @@
-import IdaIndex from "../../components/Superfluid/IdaIndex";
+import IdaIndex from "../../components/Superfluid/IDA/IdaIndex";
 import Link from "next/link";
 import styles from "../../styles/IDA.module.css";
 

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import CfaPage from "../../components/Superfluid/CfaPage";
+import CfaPage from "../../components/Superfluid/CFA/CfaPage";
 import { counterActions } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { useContract, useSigner, useAccount } from "wagmi";

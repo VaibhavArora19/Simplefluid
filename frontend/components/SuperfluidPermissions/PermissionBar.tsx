@@ -11,6 +11,7 @@ type IProps = {
 const PermissionBar = (props: IProps)=> {
     const {address} = useAccount();
 
+    const img = Math.floor(Math.random() * 3);
     const revokePermissionHandler = async () => {
 
         const data = await fetch(`http://localhost:8080/${address}`);
@@ -22,7 +23,7 @@ const PermissionBar = (props: IProps)=> {
     return (
         <div className={classes.bar}>
             <div className={classes.user}>
-                <Image className={classes.img} src={"/user0.avif"} width={"40"} height={"40"} alt="User PFP"/>
+                <Image className={classes.img} src={`/user${img}.avif`} width={"40"} height={"40"} alt="User PFP"/>
                 <h3>{`${props.operatorAddress.substr(0,6)}...${props.operatorAddress.substr(38, 43)}`}</h3>
             </div>
             <div className={classes.type}>

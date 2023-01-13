@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import classes from "./IdaBar.module.css";
 
 type IProps = {
@@ -7,8 +8,10 @@ type IProps = {
 };
 
 const IdaBar = (props: IProps) => {
+    const router = useRouter();
+
     return (
-        <div className={classes.bar}>
+        <div className={classes.bar} onClick={() => {router.push(`/IDA/${props.indexId}`)}}>
             <div>
                 <h2>{props.indexId}</h2>
             </div>

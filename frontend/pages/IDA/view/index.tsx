@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
-import IdaBar from "../../../components/Superfluid/IdaBar";
+import IdaBar from "../../../components/Superfluid/IDA/IdaBar";
 import styles from "../../../styles/IDA.module.css";
 
 const ViewIda = () => {

@@ -1,8 +1,8 @@
 .sidebar {
     position: fixed;
     margin-left: 4px;
-    width: 250px;
-    border-right: 1px solid rgb(228, 220, 220);
+    width: 235px;
+    border-right: 1px solid rgba(158, 154, 154, 0.288);
     height: 100vh;
 }
 
@@ -15,6 +15,7 @@
     display: inline-block;
     position: relative;
     bottom: 7px;
+    color:white;
 }
 
 .logo h1 {
@@ -30,9 +31,7 @@
 
 .sidebar h2 {
     font-size: 0.99rem;
-    font-weight: 600;
     padding-top: 15px;
-    color: rgb(74, 113, 239);
     padding-left: 20px;
 }
 
@@ -49,9 +48,10 @@
 }
 
 .linkActive {
-    background-color: rgba(146, 196, 230, 0.2);
+    background-color: rgba(247, 177, 0, 0.179);
     border-radius: 10px;
     width: 220px;
     margin-bottom: 20px;
     height: 55px;
+    color: #bf920b;
 }

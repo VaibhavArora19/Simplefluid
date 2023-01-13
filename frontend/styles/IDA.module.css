@@ -18,7 +18,7 @@
 
 .info {
     width: 90%;
-    margin-left: 5%;   
+    margin-left: 5%; 
 }
 
 .logo{
@@ -30,6 +30,53 @@
     border-radius:0 0 10px 10px;
     padding-left: 40px;
     margin-bottom: 50px;
+}
+
+.info label {
+    font-size: 20px;
+    padding-left: 34px;
+    display: block;
+}
+
+.btn {
+  margin-left: 5%;
+  margin-top: 19px;
+
+}
+
+.add {
+    width: 10%;
+    margin-right: 2%;
+    color: white;
+    margin-bottom: 4%;
+}
+
+.update {
+    width: 40%;
+    margin-right: 2%;
+    color: white;
+}
+
+.distribute {
+    width: 40%;
+    margin-right: 2%;
+    color: white;
+}
+
+.units {
+    width: 90%;
+    height: 45px;
+    border-radius: 10px;
+    margin-left: 35px;
+    margin-top: 1%;
+    margin-bottom: 4%;
+    padding-left: 8px;
+    border: 1px solid rgb(228, 220, 220);
+}
+
+.units:focus {
+    outline: none !important;
+    border: 1px solid #efc035;
 }
 
 .top {

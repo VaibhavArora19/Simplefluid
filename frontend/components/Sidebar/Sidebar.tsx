@@ -11,8 +11,8 @@ const Sidebar = (): JSX.Element => {
     <div className={classes.sidebar}>
       <div className={classes.logo}>
         <Image
-          src="/simplefluid.webp"
-          width={32}
+          src="/logo.png"
+          width={72}
           height={32}
           alt="Simplefluid logo"
           className={classes.image}

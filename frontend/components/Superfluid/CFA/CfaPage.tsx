@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { counterActions } from "../../store";
+import { counterActions } from "../../../store";
 import { ChangeEvent, useState } from "react";
 import classes from "./CfaPage.module.css";
 
