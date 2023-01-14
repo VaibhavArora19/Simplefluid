@@ -8,8 +8,26 @@
     cursor: pointer;
 }
 
+.index {
+    margin-left: 70px;
+    width: 50px;
+}
+
+.units {
+    margin-left:50px;
+}
+
+
+.index h2{
+    text-align: left;
+}
+
+.units h2{
+    text-align: center;
+}
+
 .bar h2 {
-    padding-left: 77px;
+    /* padding-left: 77px; */
 }
 
 .pending {
@@ -28,6 +46,9 @@
     width: 150px;
     font-size: 1.25rem;
     border-radius: 10px;
-    padding-left: 45px;
-    padding-top: 5px;   
+    padding-top: 5px; 
+}
+
+.deposited h1 {
+    text-align: center;  
 }

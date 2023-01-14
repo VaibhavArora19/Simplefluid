@@ -18,7 +18,7 @@ query permission ($id: ID!) {
 `
 
 const totalIndexQuery = `
-query ($id: ID!) {
+query totalIndex ($id: ID!) {
     indexes(where: {publisher: $id}) {
       indexId
       totalUnits
@@ -29,16 +29,23 @@ query ($id: ID!) {
 
 const singleIndexQuery = `
 query ($id: ID!) {
-    index(id: $id) {
-      indexId
-      indexValue
-      totalAmountDistributedUntilUpdatedAt
-      totalSubscriptionsWithUnits
-      totalUnits
-      totalUnitsApproved
-      totalUnitsPending
+  index(id: $id) {
+    indexId
+    totalSubscriptionsWithUnits
+    totalUnits
+    totalUnitsApproved
+    totalUnitsPending
+    subscriptions {
+      subscriber {
+        id
+        subscriptions(where: {index_: {id: $id}}) {
+          approved
+          units
+        }
+      }
     }
   }
+}
 `;
 
 const client = createClient({
@@ -48,15 +55,29 @@ const client = createClient({
 
 app.get('/permissions/:address', async (req, res, next) => {
     const { address } = req.params;
-    console.log('address',  address);
 
     const result = await client.query(permissionQuery, {"id": address}).toPromise();
 
     res.json(result.data.flowOperators);
 });
 
+app.get('/totalindex/:address', async (req, res, next) => {
+    const { address } = req.params;
+
+    console.log('address is ', address);
+
+    const result = await client.query(totalIndexQuery, {"id": address}).toPromise();
+
+    res.json(result.data.indexes)
+});
+
 app.get('/index/:id', async(req, res, next) => {
     // { "id": "0x5e97bbfb258fbb110231c4f01c693ef6ba9553a6-0x5d8b4c2554aeb7e86f387b4d6c00ac33499ed01f-432" }
+    const { id } = req.params;
+
+    const result = await client.query(singleIndexQuery, {"id": id}).toPromise();
+
+    res.json(result?.data);
 });
 
 app.listen(8080, console.log("Listening on port 8080"));

@@ -1,0 +1,62 @@
+.IdaDetails {
+    margin-top: 9%;
+}
+
+.heading {
+    background-color: rgba(78, 247, 0, 0.179);
+    width: 170px;
+    height: 40px;
+    border-radius: 10px;
+    margin-bottom: 4%;
+}
+
+.tableHeading {
+    font-size: 1.3rem;
+}
+
+
+.IdaDetails table {
+    width: 90%;
+    /* margin-left: 4%; */
+}
+
+.heading h1 {
+    padding-top: 5px;
+    text-align: center;
+    font-size: 1.25rem;
+    color:rgb(23, 171, 23);
+}
+
+.true {
+    background-color: rgba(78, 247, 0, 0.179);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.true h1{
+    padding-top: 5px;
+    font-weight: 600;
+    color: rgb(5, 167, 5);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.false {
+    background-color: rgba(245, 14, 14, 0.179);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.false h1 {
+    padding-top: 4px;
+    font-weight: 600;
+    color: rgb(209, 21, 0);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.btn {
+    margin-left: 35%;
+}

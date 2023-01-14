@@ -9,7 +9,9 @@ const ViewIda = () => {
 
   useEffect(() => {
     (async function () {
-      const idaArray = await fetch(`http://localhost:8080/totalIda/${address}`);
+      let publisher = address?.toLowerCase();
+
+      const idaArray = await fetch(`http://localhost:8080/totalindex/${publisher}`);
       const response = await idaArray.json();
       console.log(response);
       setTotalIda([...response]);
@@ -38,7 +40,7 @@ const ViewIda = () => {
           </div>
           {totalIda.map(singleIda => {
                 // @ts-ignore
-              return <IdaBar key ={singleIda.indexId} indexId={singleIda.indexId} units={singleIda.units} isDistributed={singleIda.isDistributed}/>
+              return <IdaBar key ={singleIda.indexId} indexId={singleIda.indexId} units={singleIda.totalUnits} />
           })
           }
         </>

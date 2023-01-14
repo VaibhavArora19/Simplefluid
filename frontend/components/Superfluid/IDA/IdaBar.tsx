@@ -11,15 +11,15 @@ const IdaBar = (props: IProps) => {
     const router = useRouter();
 
     return (
-        <div className={classes.bar} onClick={() => {router.push(`/IDA/${props.indexId}`)}}>
-            <div>
+        <div className={classes.bar} onClick={() => {router.push(`/IDA/Details/${props.indexId}`)}}>
+            <div className={classes.index}>
                 <h2>{props.indexId}</h2>
             </div>
-            <div>
+            <div  className={classes.units}>
                 <h2>{props.units ? props.units : "-"}</h2>
             </div>
-            <div className={`${props.isDistributed ? classes.deposited : classes.pending}`}>
-                <h1>{props.isDistributed ? "Approved" : "Pending"}</h1>
+            <div className={classes.deposited}>
+                <h1>{"Approved"}</h1>
             </div>
         </div>
     )

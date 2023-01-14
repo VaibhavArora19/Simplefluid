@@ -1,9 +1,9 @@
 import React from "react";
 import IdaSubscribers from "../../../components/Superfluid/IDA/IdaSubscribers";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "../../../styles/IDA.module.css";
-import { updateSubscription } from "../../../components/Superfluid/IDA/SuperfluidIDA";
+import { updateSubscription, distribute } from "../../../components/Superfluid/IDA/SuperfluidIDA";
 
 
 const IdaIndex = () => {
@@ -11,6 +11,7 @@ const IdaIndex = () => {
   const [totalSubscribers, setTotalSubscribers] = useState(['1']); 
   const [subscribers, setSubscribers] = useState<Array<string>>([]);
   const [shares, setShares] = useState<Array<string>>([]);
+  const amountRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
   const { indexId } = router.query;
@@ -56,6 +57,25 @@ const IdaIndex = () => {
         console.log(shares);
   };
 
+  const updateSubscriptionHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+
+    for(let i =0; i<subscribers.length; i++) {
+      if(indexId !== undefined)
+
+      updateSubscription(indexId?.toString(), subscribers[i], shares[i]);
+    }
+  }; 
+
+  const distributeAmountHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      event.preventDefault();
+    
+      if(amountRef?.current?.value === null) return;
+
+      if(indexId !== undefined && amountRef?.current?.value)
+      distribute(indexId?.toString(), amountRef?.current?.value)
+  };
+
 
   return (
     <div className={styles.bar}>
@@ -79,8 +99,8 @@ const IdaIndex = () => {
               />
             </div>
             <div style={{display:"inline-block", width:"45%"}}>
-              <label>Units</label>
-              <input type="text" placeholder="Units" className={styles.units}/>
+              <label>Amount</label>
+              <input type="text" placeholder="Amount" className={styles.units} ref={amountRef}/>
             </div>
           </div>
           <label>Subscribers</label>
@@ -89,8 +109,8 @@ const IdaIndex = () => {
           })}
           <div className={styles.btn}>
           <button className={`btn btn-info ${styles.add}`} onClick={addFieldHandler}>+</button>
-          <button className={`btn btn-warning ${styles.update}`}>Update</button>
-          <button className={`btn btn-warning ${styles.distribute}`}>Distribute</button>
+          <button className={`btn btn-warning ${styles.update}`} onClick={updateSubscriptionHandler}>Update</button>
+          <button className={`btn btn-warning ${styles.distribute}`} onClick={distributeAmountHandler}>Distribute</button>
           </div>
           </>
         </form>
