@@ -20,12 +20,12 @@
 
 .type {
     color: #bf920b;
-    background-color: rgba(247, 177, 0, 0.179);
-    width: 150px;
+    background-color: rgba(247, 177, 0, 0.179);   
     font-size: 1.25rem;
     border-radius: 10px;
-    padding-left: 45px;
+    width: 300px;
     padding-top: 5px;
+    text-align: center;
 }
 
 

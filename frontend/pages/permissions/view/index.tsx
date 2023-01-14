@@ -3,53 +3,67 @@ import { useAccount } from "wagmi";
 import PermissionBar from "../../../components/SuperfluidPermissions/PermissionBar";
 import styles from "../../../styles/Permissions.module.css";
 
+const permissionQuery = `
+query ($id: ID = "") {
+    account(id: $id) {
+      createdAtTimestamp
+      createdAtBlockNumber
+      isSuperApp
+      updatedAtBlockNumber
+      updatedAtTimestamp
+    }
+  }
+`;
 
 const ViewPermissions = () => {
-    const [permission, setPermission] = useState<Array<object>>([])
-    const {address} = useAccount();
+  const [permission, setPermission] = useState<Array<object>>([]);
+  const { address } = useAccount();
 
-    useEffect(() => {
+  useEffect(() => {
+    (async function () {
+      let sender: string = "";
+      if (address !== undefined) sender = address.toLowerCase();
 
-        (async function(){
+      const res = await fetch(`http://localhost:8080/permissions/${sender}`);
 
-            const res = await fetch(`http://localhost:8080/viewPermissions/${address}`);
+      const data = await res.json();
 
-            const data = await res.json();
-            console.log(data);
-            setPermission([...data]);
-        })();
-
-    }, []);
-    return (
-        <div className={styles.view}>
-            {permission.length > 0 ?
-            <div className={styles.info}>
-                <>
-                <h1>View permissions</h1>
+      console.log(data);
+      setPermission([...data]);
+    })();
+  }, []);
+  
+  return (
+    <div className={styles.view}>
+      {permission.length > 0 ? (
+        <div className={styles.info}>
+          <>
+            <h1>View permissions</h1>
             <div className={styles.top}>
-                <div>
-                    <h3>Address</h3>
-                </div>
-                <div>
-                    <h3>Permission</h3>
-                </div>
-                <div>
-                    <h4>Revoke</h4>
-                </div>
+              <div>
+                <h3>Address</h3>
+              </div>
+              <div>
+                <h3>Permission</h3>
+              </div>
+              <div>
+                <h4>Revoke</h4>
+              </div>
             </div>
             {permission.map((singlePermission, index) => {
-                //@ts-ignore
-                return <PermissionBar key={index} operatorAddress={singlePermission?.operatorAddress} permissions={singlePermission?.permissions} />
+              //@ts-ignore
+              return ( singlePermission.permissions !== 0 && <PermissionBar key={index} operatorAddress={singlePermission?.flowOperator} permissions={singlePermission?.permissions} />
+              );
             })}
-            </>
-            </div>
-            :
-            <div>
-                <h1>Loading....</h1>
-            </div>   
-            }
+          </>
         </div>
-    )
+      ) : (
+        <div>
+          <h1>Loading....</h1>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default ViewPermissions;

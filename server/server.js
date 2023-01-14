@@ -21,6 +21,8 @@ mongoose.connect(mongodbURI, {useNewUrlParser: true})
     console.error(err);
 });
 
+
+
 app.get('/viewPermissions/:sender', async (req, res, next) => {
     const {sender} = req.params;
 
