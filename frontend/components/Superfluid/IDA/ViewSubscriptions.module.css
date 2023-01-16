@@ -1,0 +1,50 @@
+.view {
+    margin-left: 7%;
+    display: flex;
+    gap:130px;
+    margin-bottom: 2%;
+    border-bottom: 1px solid rgba(158, 154, 154, 0.288);
+}
+
+.view h1 {
+    font-size: 1.07rem;
+}
+
+
+.symbolApprove {
+    margin-right: 2%;
+    margin-left: 6%;
+    margin-bottom: 6px;
+    background-color: rgba(78, 247, 0, 0.179);
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.symbolApprove h1 {
+    padding-top: 5px;
+    color: rgb(5, 167, 5);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.symbolRevoke {
+    margin-right: 2%;
+    margin-left: 6%;
+    margin-bottom: 7px;
+    background-color: rgba(245, 14, 14, 0.179);
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.symbolRevoke h1 {
+    padding-top: 6px;
+    font-weight: 500;
+    color: rgb(209, 21, 0);
+    font-size: 1.2rem;
+    text-align: center;
+}

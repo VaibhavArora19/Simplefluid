@@ -32,7 +32,7 @@ const PermissionBar = (props: IProps)=> {
                 <h2>{currentPermssion}</h2> 
             </div>
             <div className={classes.cross} onClick={revokePermissionHandler}>
-                <h4 style={{fontSize:"22px"}}><i className="fa-sharp fa-solid fa-circle-xmark"></i></h4>
+                <h4 style={{fontSize:"22px"}}><i className="fa-light fa-circle-xmark"></i></h4>
             </div>
         </div>
     )

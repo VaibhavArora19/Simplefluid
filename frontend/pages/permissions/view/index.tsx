@@ -21,6 +21,7 @@ const ViewPermissions = () => {
 
   useEffect(() => {
     (async function () {
+      if(address) {
       let sender: string = "";
       if (address !== undefined) sender = address.toLowerCase();
 
@@ -28,8 +29,9 @@ const ViewPermissions = () => {
 
       const data = await res.json();
       setPermission([...data]);
+      }
     })();
-  }, []);
+  }, [address]);
   
   return (
     <div className={styles.view}>

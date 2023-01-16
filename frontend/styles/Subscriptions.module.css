@@ -1,0 +1,32 @@
+.subscriptions {
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    width: 69%;
+    margin-top: 9%;
+    margin-left: 8%;
+}
+
+.subscribe {
+    margin-left: 7%;
+    margin-top: 10%;
+    margin-bottom: 3%;
+    display: flex;
+    gap:150px;
+}
+
+.subscribe h1 {
+    color: rgb(139, 137, 137);
+    margin-bottom: 18px;
+}
+
+.subscriptions h2 {
+    margin-left: 4%;
+    background-color: rgba(247, 177, 0, 0.179);
+    width: 150px;
+    color: #bf920b;
+    font-size: 1.25rem;
+    border-radius:0 0 10px 10px;
+    padding-left: 15px;
+    margin-bottom: 50px;
+    display: block;
+}

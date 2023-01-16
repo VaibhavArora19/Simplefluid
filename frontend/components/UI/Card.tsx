@@ -98,12 +98,12 @@ const Card = (props: Iprops) => {
         </div>
         {props.position === "third" &&
             <div className={classes.third}>
-                <i className="fa-brands fa-bitcoin fa-2x"></i>
+                <i className="fa-light fa-handshake"></i>
             </div>
         }
         {   props.position === "fourth" &&
             <div className={classes.fourth}>
-                <i className="fa-regular fa-wand-sparkles"></i>
+                <i className="fa-regular fa-sparkles"></i>
             </div>
         }
       </div>

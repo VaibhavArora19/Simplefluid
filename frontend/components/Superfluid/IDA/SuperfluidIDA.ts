@@ -117,8 +117,8 @@ export async function distribute(indexId: string, amount: string) {
 
 
 export async function revokeSubscription(indexId: string, publisher: string) {
-    // @ts-ignore
-    const provider = new ethers.providers.web3Provider(window.ethereum);
+    // @ts-ignore 
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
 
     const sf = await Framework.create({
@@ -156,7 +156,7 @@ export async function revokeSubscription(indexId: string, publisher: string) {
 
 export async function approveSubscription(indexId: string, publisher: string) {
         // @ts-ignore
-        const provider = new ethers.providers.web3Provider(window.ethereum);
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
     
         const sf = await Framework.create({

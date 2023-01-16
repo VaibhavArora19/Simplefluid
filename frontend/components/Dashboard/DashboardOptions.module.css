@@ -1,17 +1,17 @@
 .page {
-    margin-top: 10%;
+    margin-top: 4%;
     margin-left: 8%;
+    cursor: pointer;
 }
 
 .page h1 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-left: 20%;
+    font-size: 32px;
+    margin-left: 17%;
 }
 
 .page h4 {
-    margin-left: 21%;
-    margin-bottom: 5px;
+    margin-left: 22%;
+    margin-bottom: 7px;
 }
 
 .options {

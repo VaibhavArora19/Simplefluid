@@ -52,9 +52,11 @@ query ($id: ID!) {
 const subscriptionQuery = `
 query subscription($id: ID!) {
   indexSubscriptions(where: {subscriber_: {id: $id}}) {
+    id
     approved
     units
     index {
+      indexId
       publisher {
         id
       }
