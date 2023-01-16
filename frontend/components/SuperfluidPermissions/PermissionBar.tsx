@@ -1,4 +1,5 @@
 import { reversePermissions } from "../../constants";
+import { revokeFullControl } from "./index";
 import Image from "next/image";
 import { useAccount } from "wagmi";
 import classes from "./PermissionBar.module.css";
@@ -16,12 +17,9 @@ const PermissionBar = (props: IProps)=> {
     const currentPermssion = reversePermissions[props.permissions];
 
     const img = Math.floor(Math.random() * 3);
+
     const revokePermissionHandler = async () => {
-
-        const data = await fetch(`http://localhost:8080/${address}`);
-
-        const res = await data.json();
-        console.log(res);
+        revokeFullControl(props.operatorAddress);
     };
     
     return (

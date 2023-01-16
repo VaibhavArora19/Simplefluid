@@ -27,8 +27,6 @@ const ViewPermissions = () => {
       const res = await fetch(`http://localhost:8080/permissions/${sender}`);
 
       const data = await res.json();
-
-      console.log(data);
       setPermission([...data]);
     })();
   }, []);

@@ -39,7 +39,7 @@ const IDADetails = () => {
   return (
     <>
       {idaDetails !== null && (
-        <div>
+        <div style={{marginBottom:'5%'}}>
           <Details
             indexId={idaDetails?.indexId}
             totalUnits={idaDetails?.totalUnits}

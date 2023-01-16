@@ -65,7 +65,7 @@ export async function updateSubscription(indexId: string, subscriber: string, un
 
         console.log(
             `Congrats - you've just updated an Index!
-             Network: Goerli
+             Network: Mumbai
              Super Token: DAIx
              Index ID: ${indexId}
              Subscriber: nothing
@@ -103,7 +103,7 @@ export async function distribute(indexId: string, amount: string) {
 
         console.log(
             `Congrats - you've just sent funds to your index!
-             Network: Goerli
+             Network: Mumbai
              Super Token: DAIx
              Index ID: ${indexId}
              Total Sent: ${amount}
@@ -114,3 +114,78 @@ export async function distribute(indexId: string, amount: string) {
         console.error(err);
     }
 }
+
+
+export async function revokeSubscription(indexId: string, publisher: string) {
+    // @ts-ignore
+    const provider = new ethers.providers.web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
+    const sf = await Framework.create({
+        chainId:80001,
+        provider
+    });
+
+    const fDAIx = await sf.loadSuperToken("fDAIx");
+
+    try {
+
+        const revokeSubscription = fDAIx.revokeSubscription({
+            indexId: indexId,
+            publisher: publisher,
+          });   
+
+          console.log('revoking your subscription...');
+
+          await revokeSubscription.exec(signer);
+
+          console.log(
+            `Your subscription has been revoked!
+             Network: Mumbai
+             Super Token: fDAIx
+          `
+          );
+
+    }
+    catch(err) {
+        console.error(err);
+    }
+
+}
+
+
+export async function approveSubscription(indexId: string, publisher: string) {
+        // @ts-ignore
+        const provider = new ethers.providers.web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+    
+        const sf = await Framework.create({
+            chainId:80001,
+            provider
+        });
+    
+        const fDAIx = await sf.loadSuperToken("fDAIx");
+    
+        try {
+    
+            const revokeSubscription = fDAIx.approveSubscription({
+                indexId: indexId,
+                publisher: publisher,
+              });   
+    
+              console.log('approving your subscription...');
+    
+              await revokeSubscription.exec(signer);
+    
+              console.log(
+                `Your subscription has been approved!
+                 Network: Mumbai
+                 Super Token: fDAIx
+              `
+              );
+    
+        }
+        catch(err) {
+            console.error(err);
+        }
+};

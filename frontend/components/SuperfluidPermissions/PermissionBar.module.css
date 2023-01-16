@@ -42,4 +42,5 @@
     width: 40px;
     border-radius: 8px;
     background-color: rgba(234, 155, 155, 0.448);
+    cursor: pointer;
 }

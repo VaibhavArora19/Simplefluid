@@ -1,4 +1,4 @@
-const { gql, createClient } = require("@urql/core");
+const { createClient } = require("@urql/core");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -48,6 +48,21 @@ query ($id: ID!) {
 }
 `;
 
+
+const subscriptionQuery = `
+query subscription($id: ID!) {
+  indexSubscriptions(where: {subscriber_: {id: $id}}) {
+    approved
+    units
+    index {
+      publisher {
+        id
+      }
+    }
+  }
+}
+`;
+
 const client = createClient({
     url:'https://api.thegraph.com/subgraphs/name/superfluid-finance/protocol-v1-mumbai'
 });
@@ -64,8 +79,6 @@ app.get('/permissions/:address', async (req, res, next) => {
 app.get('/totalindex/:address', async (req, res, next) => {
     const { address } = req.params;
 
-    console.log('address is ', address);
-
     const result = await client.query(totalIndexQuery, {"id": address}).toPromise();
 
     res.json(result.data.indexes)
@@ -78,6 +91,17 @@ app.get('/index/:id', async(req, res, next) => {
     const result = await client.query(singleIndexQuery, {"id": id}).toPromise();
 
     res.json(result?.data);
+});
+
+
+app.get('/subscriptions/:id', async(req, res, next) => {
+
+  const { id } = req.params;
+
+  const result = await client.query(subscriptionQuery, {"id": id}).toPromise();
+
+
+  res.json(result?.data?.indexSubscriptions);
 });
 
 app.listen(8080, console.log("Listening on port 8080"));
