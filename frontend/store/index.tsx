@@ -1,7 +1,6 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { getDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 import CfaPage from "../components/Superfluid/CFA/CfaPage";
-import CFA from "../pages/sendcfa";
 
 let initialState = {
     // @ts-ignore

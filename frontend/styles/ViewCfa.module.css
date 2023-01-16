@@ -1,0 +1,36 @@
+.view {
+    display: flex;
+    gap: 130px;
+    
+}
+
+.box {
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    width: 93%;
+    margin-top: 8%;
+    margin-left: 3%;
+    padding-top: 2%;
+    padding-left: 3%;
+    margin-left: 0;
+}
+
+.active {
+    background-color: rgba(12, 139, 229, 0.249);
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 3px;
+    color: rgb(26, 138, 202);
+}
+
+.change {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.view h1 {
+    color: rgb(139, 137, 137);
+}

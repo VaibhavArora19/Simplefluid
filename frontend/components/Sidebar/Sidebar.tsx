@@ -25,9 +25,14 @@ const Sidebar = (): JSX.Element => {
             <h2><i className="fa-regular fa-chart-network"></i>&nbsp;&nbsp; Dashboard</h2>
           </Link>
         </div>
-        <div className={router.pathname === "/sendcfa" ? classes.linkActive : classes.link}>
-          <Link href="/sendcfa">
+        <div className={router.pathname === "/CFA" ? classes.linkActive : classes.link}>
+          <Link href="/CFA">
             <h2><i className="fa-regular fa-square-arrow-up-right"></i>&nbsp;&nbsp; Send tokens (CFA)</h2>
+          </Link>
+        </div>
+        <div className={router.pathname === "/CFA/view" ? classes.linkActive : classes.link}>
+          <Link href="/CFA/view">
+            <h2><i className="fa-duotone fa-bars-staggered"></i>&nbsp;&nbsp; View streams</h2>
           </Link>
         </div>
         <div className={router.pathname === "/IDA" ? classes.linkActive : classes.link}>

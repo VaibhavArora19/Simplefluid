@@ -48,6 +48,35 @@ query ($id: ID!) {
 }
 `;
 
+const streamSendQuery = `
+query streamSendQuery($sender: ID = "") {
+  streams(where: {sender: $sender}) {
+    currentFlowRate
+    receiver {
+      id
+      accountTokenSnapshots {
+        totalAmountStreamedInUntilUpdatedAt
+      }
+    }
+    createdAtTimestamp
+  }
+}
+`;
+
+const streamReceivedQuery = `
+query ($receiver: ID) {
+  streams(where: {receiver: $receiver}) {
+    currentFlowRate
+    receiver {
+      id
+      accountTokenSnapshots {
+        totalAmountStreamedInUntilUpdatedAt
+      }
+      createdAtTimestamp
+    }
+  }
+}
+`
 
 const subscriptionQuery = `
 query subscription($id: ID!) {
@@ -104,6 +133,18 @@ app.get('/subscriptions/:id', async(req, res, next) => {
 
 
   res.json(result?.data?.indexSubscriptions);
+});
+
+app.get('/streams/:sender', async (req, res, next) => {
+
+  const { sender } = req.params;
+
+  const result1 = await client.query(streamSendQuery, {"sender": sender}).toPromise();
+  const result2 = await client.query(streamReceivedQuery, {"receiver": sender}).toPromise();
+
+  console.log(result1.data);
+  
+  res.json({outgoing: result1.data.streams, incoming: result2.data.streams});
 });
 
 app.listen(8080, console.log("Listening on port 8080"));

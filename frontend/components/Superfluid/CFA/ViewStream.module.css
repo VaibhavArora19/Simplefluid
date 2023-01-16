@@ -1,0 +1,17 @@
+.view {
+    margin-top: 2%;
+    display: flex;
+    gap:100px;
+    text-align: left;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(158, 154, 154, 0.288);
+}
+
+.flow {
+    width: 160px;
+}
+
+.flowRate {
+    width: 20px;
+    text-align: left;
+}
