@@ -19,12 +19,27 @@ const CFAView = () => {
 
                 const res = await data.json();
 
-                console.log('res is', res.outgoing);
-                setOutgoingStreams(res.outgoing);
+                let sortedArray = sortArray(res.outgoing);
+                setOutgoingStreams(sortedArray);
+                let sortArrayIncoming = sortArray(res.incoming);
+                setIncomingStreams(sortArrayIncoming);
             })();
         }
 
     }, [address]);
+
+    function sortArray(arr: Array<any>) {
+        for(let i =0; i<arr.length; i++){
+            for(let j =i+1; j<arr.length; j++){
+                if(arr[i].createdAtTimestamp < arr[j].createdAtTimestamp){
+                    let temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+            }
+            return arr;
+        }
 
     return (
         <div className={styles.box}>

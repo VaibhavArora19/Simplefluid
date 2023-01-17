@@ -5,6 +5,16 @@
     text-align: left;
     padding-bottom: 2px;
     border-bottom: 1px solid rgba(158, 154, 154, 0.288);
+    font-size: 1.05rem;
+}
+
+.address {
+    width: 100px;   
+}
+
+.time {
+    margin-left: 7%;
+    width: 100px;
 }
 
 .flow {
@@ -14,4 +24,35 @@
 .flowRate {
     width: 20px;
     text-align: left;
+}
+
+.onGoing {
+    margin-left: 3%;
+}
+
+.icon div{
+    display: inline-block;
+}
+
+.pen {
+    height: 30px;
+    width: 30px;
+    background-color: rgba(49, 190, 66, 0.178);
+    color: green;
+    border-radius: 10px;
+    padding-top: 3px;
+    padding-left: 7px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.cross {
+    height: 30px;
+    width: 30px;
+    background-color: rgba(221, 99, 99, 0.284);
+    color: red;
+    border-radius: 10px;
+    padding-top: 3px;
+    padding-left: 7px;
+    cursor: pointer;
 }

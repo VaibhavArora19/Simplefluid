@@ -1,18 +1,18 @@
 .view {
     display: flex;
-    gap: 130px;
+    gap: 150px;
     
 }
 
 .box {
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    width: 93%;
-    margin-top: 8%;
-    margin-left: 3%;
+    width:93%;
+    margin-top: 3%;
     padding-top: 2%;
     padding-left: 3%;
     margin-left: 0;
+    margin-bottom: 3%;
 }
 
 .active {

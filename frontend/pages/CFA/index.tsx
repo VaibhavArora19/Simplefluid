@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/router";
 import CfaPage from "../../components/Superfluid/CFA/CfaPage";
 import { counterActions } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { useContract, useSigner, useAccount } from "wagmi";
 import { contractAddress, ABI } from "../../constants";
-import { createStream } from "../../components/SuperfluidPermissions/index";
+import { createStream, updateFlow } from "../../components/SuperfluidPermissions/index";
 import styles from "../../styles/Cfa.module.css";
 
 type reduxState = {
@@ -14,6 +15,7 @@ type reduxState = {
 };
 
 const CFA = () => {
+  const router = useRouter();
   const [isMultiple, setIsMultiple] = useState<boolean>(false);
   const [receiverAddress, setReceiverAddress] = useState<Array<string | null>>(
     []
@@ -26,6 +28,8 @@ const CFA = () => {
   const { data: signer } = useSigner();
   const { address } = useAccount();
   const flowRateRef = useRef<HTMLInputElement>(null);
+
+  const {update} = router.query;
 
   const contract = useContract({
     address: contractAddress,
@@ -40,7 +44,7 @@ const CFA = () => {
     }, 5000);
 
   }, []);
-
+  
   const incrementHandler = () => {
     if (isMultiple === false) {
       setIsMultiple(true);
@@ -56,6 +60,11 @@ const CFA = () => {
   };
 
   const streamHandler = async () => {
+    if(update === "true"){
+      await updateFlow(address, receiverAddress[0], flowRateRef?.current?.value);
+      return;
+    }
+
     try {
       if (currentAccounts.length === 1) {
         createStream(address, receiverAddress[0], flowRateRef?.current?.value);
@@ -140,6 +149,7 @@ const CFA = () => {
             />
           </div>
         </div>
+        { update !== "true" ?
         <div style={{paddingBottom:"3%", marginTop:"3%"}}>
         <button
             className={`btn btn-info ${styles.button}`}
@@ -154,6 +164,11 @@ const CFA = () => {
             Start streaming
           </button>
         </div>
+          :
+          <div style={{paddingBottom:"3%", marginTop:"3%"}}>
+            <button className={`btn btn-warning ${styles.modify}`} onClick={streamHandler}>Modify Stream</button>
+          </div>
+          }
       </div>
     </>
   );

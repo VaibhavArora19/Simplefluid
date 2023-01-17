@@ -142,6 +142,28 @@ export async function createStream(sender: string | undefined, receiver: string 
 
 };
 
+export async function updateFlow(sender: string | undefined, receiver: string | null, flowRate: string | undefined) {
+        // @ts-ignore
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        
+      const sf = await Framework.create({
+        chainId: 80001,
+        provider:provider
+      });
+    
+      const DAIxContract = await sf.loadSuperToken("fDAIx");
+      if(sender !== undefined && receiver !== null && flowRate !== undefined){
+        let flowOp = DAIxContract.updateFlow({
+          sender,
+          receiver,
+          flowRate,
+        });
+        console.log("updating flow");
+
+        await flowOp.exec(signer);
+      }     
+}
 
 //Deletes the ongoing flow, this function should be operated by user and not user
 export async function deleteFlow(sender: string | undefined, receiver: string | null) {
@@ -163,6 +185,8 @@ export async function deleteFlow(sender: string | undefined, receiver: string | 
       sender,
       receiver
     });
+
+    console.log("Deleting your stream");
     
     await flowOp.exec(signer);
   }
