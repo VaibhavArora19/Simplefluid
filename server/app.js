@@ -74,6 +74,9 @@ query ($receiver: ID) {
       }
       createdAtTimestamp
     }
+    sender {
+      id
+    }
   }
 }
 `
