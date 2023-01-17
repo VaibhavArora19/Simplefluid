@@ -13,6 +13,11 @@ import {
     SuperTokenV1Library
 } from "@superfluid-finance/ethereum-contracts/contracts/apps/SuperTokenV1Library.sol";
 
+// AutomationCompatible.sol imports the functions from both ./AutomationBase.sol and
+// ./interfaces/AutomationCompatibleInterface.sol
+import "@chainlink/contracts/src/v0.8/AutomationCompatible.sol";
+
+
 
 // Interface defining superfluid scheduler
 interface IFlowScheduler {
@@ -62,7 +67,7 @@ interface IFlowScheduler {
 
 }
 
-contract Simplefluid {
+contract Simplefluid is AutomationCompatibleInterface{
 
     event streamStartedSingle(address sender, address receiver, int96 flowRate);
     event streamStartedMultiple(address sender, address[] receiver, int96 flowRate);
@@ -83,9 +88,38 @@ contract Simplefluid {
     //array of sender addresses that want to automate their streams
     address[] public automatedSenders;
 
+    //mapping to check if the transaction between a particular sender and receiver is automated or not
+    mapping(bytes32 => bool) public isAutomated;
+
     constructor() {
         token = ISuperToken(_token);
         flowScheduler = IFlowScheduler( _flowScheduler);
+    }
+
+    //chainlink function to check if performUpKeep should be executed or not
+    function checkUpkeep( bytes calldata /* checkData */) external view override
+       returns (bool upkeepNeeded, bytes memory /* performData */) {
+
+           //checks if the transaction should be automated right now or not
+           for(uint i =0; i<automatedSenders.length; i++) {
+               address[] memory pair = automatedStreams[automatedSenders[i]]; 
+                 for(uint j=0; j<pair.length; j++) {
+                    
+                    //if this stream between sender and receiver is already automated then skip this one
+                    if(isAutomated[keccak256(abi.encodePacked(automatedStreams[automatedSenders[i]], pair[j]))]){
+                        continue;
+                    }
+
+                    //@dev todo check if this is the right time to start or stop the stream
+                    // by checking the time set by the user and the current block.timestamp
+                    // if the time is correct call the performUpKeep
+                 }
+           }
+    }
+
+    //chainlink automation function to carry out changes using off-chain keepers
+    function performUpkeep(bytes calldata /* performData */) external override {
+
     }
     
     //function to start a single flow using operator
@@ -129,8 +163,7 @@ contract Simplefluid {
      * @dev Automating the flow using superfluid scheduler
      * Permission will be handled using superfluid sdk
      */
-    function scheduleStream(address receiver, uint32 startDate, int96 flowRate, uint32 endDate, 
-    bytes memory userData) external {
+    function scheduleStream(address receiver, uint32 startDate, int96 flowRate, uint32 endDate) external {
         //endDate can be set to zero if the user is only concerned with the opening of stream
 
             if(automatedStreams[msg.sender].length == 0){
@@ -138,9 +171,13 @@ contract Simplefluid {
             }
 
             automatedStreams[msg.sender].push(receiver);
+            
+            bytes32 addressHash = keccak256(abi.encodePacked(msg.sender, receiver));
+
+            isAutomated[addressHash] = false;
 
            flowScheduler.createFlowSchedule(token, receiver, startDate, 5 minutes, flowRate, 0,
-            endDate, userData, "0x"
+            endDate, "0x", "0x"
            );
     }
 
@@ -148,7 +185,7 @@ contract Simplefluid {
     * @dev function that should be triggered by an off-chain keeper
     * off-chain keeper constantly checks the streams to start/close by calling this function
     */
-    function getScheduledStream(address sender, address receiver) external view returns(IFlowScheduler.FlowSchedule memory) {
+    function getScheduledStream(address sender, address receiver) public view returns(IFlowScheduler.FlowSchedule memory) {
         return flowScheduler.getFlowSchedule(_token, sender, receiver);
     }
 
@@ -159,6 +196,11 @@ contract Simplefluid {
 
     //function to delete the scheduled stream
     function endScheduledStream(address sender, address receiver) external returns(bool) {
-        return flowScheduler.executeDeleteFlow(token, sender, receiver, "0x");
+            
+            bytes32 addressHash = keccak256(abi.encodePacked(sender, receiver));
+            isAutomated[addressHash] = true;
+
+            return flowScheduler.executeDeleteFlow(token, sender, receiver, "0x");
     }
+
 }
