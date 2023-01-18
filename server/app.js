@@ -150,4 +150,23 @@ app.get('/streams/:sender', async (req, res, next) => {
   res.json({outgoing: result1.data.streams, incoming: result2.data.streams});
 });
 
+app.get('/automationPermission/:sender', async(req, res, next) => {
+
+  const automationPermissionQuery = `
+  query MyQuery($flowOperator: Bytes = "", $sender: String = "") {
+    flowOperators(where: {sender: $sender, flowOperator: $flowOperator}) {
+      permissions
+    }
+  }
+  `
+  let flowOperator = "0xF18825d412C061aEfEFB4dF46a1c077636dA50bf";
+  flowOperator = flowOperator.toLowerCase();
+  const { sender } = req.params;
+
+  const result = await client.query(automationPermissionQuery, {"flowOperator": flowOperator, "sender": sender}).toPromise(); 
+
+  res.json(result.data);
+
+});
+
 app.listen(8080, console.log("Listening on port 8080"));

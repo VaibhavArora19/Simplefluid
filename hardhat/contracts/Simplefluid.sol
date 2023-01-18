@@ -115,7 +115,7 @@ contract Simplefluid is AutomationCompatibleInterface{
                      // if the time is correct call the performUpKeep
                     IFlowScheduler.FlowSchedule memory getFlow = getScheduledStream(automatedSenders[i], pair[j]);
                     
-                    if(block.timestamp > getFlow.startDate && block.timestamp < getFlow.startMaxDelay){
+                    if(block.timestamp > getFlow.startDate && block.timestamp < getFlow.startDate + getFlow.startMaxDelay){
                         upkeepNeeded = true;
                     }
 
@@ -143,7 +143,7 @@ contract Simplefluid is AutomationCompatibleInterface{
                      // if the time is correct call the performUpKeep
                     IFlowScheduler.FlowSchedule memory getFlow = getScheduledStream(automatedSenders[i], pair[j]);
                     
-                    if(block.timestamp > getFlow.startDate && block.timestamp < getFlow.startMaxDelay){
+                    if(block.timestamp > getFlow.startDate && block.timestamp < getFlow.startDate + getFlow.startMaxDelay){
                         startScheduledStream(automatedSenders[i], pair[j]);
                     }
 
@@ -196,11 +196,20 @@ contract Simplefluid is AutomationCompatibleInterface{
      * @dev Automating the flow using superfluid scheduler
      * Permission will be handled using superfluid sdk
      */
-    function scheduleStream(address receiver, uint32 startDate, int96 flowRate, uint32 endDate) external {
+    function scheduleStream(address receiver) external {
         //endDate can be set to zero if the user is only concerned with the opening of stream
 
             if(automatedStreams[msg.sender].length == 0){
                 automatedSenders.push(msg.sender);   
+            }
+
+            for(uint i = 0; i < automatedStreams[msg.sender].length; i++){
+                if(automatedStreams[msg.sender][i] == receiver){
+                    bytes32 addressHash = keccak256(abi.encodePacked(msg.sender, receiver));
+                    isAutomated[addressHash] = false;
+                    return;
+                }
+
             }
 
             automatedStreams[msg.sender].push(receiver);
@@ -209,9 +218,6 @@ contract Simplefluid is AutomationCompatibleInterface{
 
             isAutomated[addressHash] = false;
 
-           flowScheduler.createFlowSchedule(token, receiver, startDate, 5 minutes, flowRate, 0,
-            endDate, "0x", "0x"
-           );
     }
 
     /**
