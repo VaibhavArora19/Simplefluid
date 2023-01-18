@@ -110,16 +110,49 @@ contract Simplefluid is AutomationCompatibleInterface{
                         continue;
                     }
 
-                    //@dev todo check if this is the right time to start or stop the stream
+                    //@dev check if this is the right time to start or stop the stream
                     // by checking the time set by the user and the current block.timestamp
-                    // if the time is correct call the performUpKeep
+                     // if the time is correct call the performUpKeep
+                    IFlowScheduler.FlowSchedule memory getFlow = getScheduledStream(automatedSenders[i], pair[j]);
+                    
+                    if(block.timestamp > getFlow.startDate && block.timestamp < getFlow.startMaxDelay){
+                        upkeepNeeded = true;
+                    }
+
+                    if(block.timestamp > getFlow.endDate) {
+                        upkeepNeeded = true;
+                    }
+                   
                  }
            }
     }
 
     //chainlink automation function to carry out changes using off-chain keepers
     function performUpkeep(bytes calldata /* performData */) external override {
+            for(uint i =0; i<automatedSenders.length; i++) {
+               address[] memory pair = automatedStreams[automatedSenders[i]]; 
+                 for(uint j=0; j<pair.length; j++) {
+                    
+                    //if this stream between sender and receiver is already automated then skip this one
+                    if(isAutomated[keccak256(abi.encodePacked(automatedStreams[automatedSenders[i]], pair[j]))]){
+                        continue;
+                    }
 
+                    //@dev check if this is the right time to start or stop the stream
+                    // by checking the time set by the user and the current block.timestamp
+                     // if the time is correct call the performUpKeep
+                    IFlowScheduler.FlowSchedule memory getFlow = getScheduledStream(automatedSenders[i], pair[j]);
+                    
+                    if(block.timestamp > getFlow.startDate && block.timestamp < getFlow.startMaxDelay){
+                        startScheduledStream(automatedSenders[i], pair[j]);
+                    }
+
+                    if(block.timestamp > getFlow.endDate) {
+                        endScheduledStream(automatedSenders[i], pair[j]);
+                    }
+                   
+                 }
+           }
     }
     
     //function to start a single flow using operator
@@ -190,12 +223,12 @@ contract Simplefluid is AutomationCompatibleInterface{
     }
 
     //function to start the scheduled stream
-    function startScheduledStream(address sender, address receiver) external returns(bool){
+    function startScheduledStream(address sender, address receiver) public returns(bool){
         return flowScheduler.executeCreateFlow(token, sender, receiver, "0x");   
     }
 
     //function to delete the scheduled stream
-    function endScheduledStream(address sender, address receiver) external returns(bool) {
+    function endScheduledStream(address sender, address receiver) public returns(bool) {
             
             bytes32 addressHash = keccak256(abi.encodePacked(sender, receiver));
             isAutomated[addressHash] = true;

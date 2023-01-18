@@ -60,8 +60,8 @@ const Sidebar = (): JSX.Element => {
             <h2><i className="fa-light fa-flag-swallowtail"></i>&nbsp;&nbsp; View Permissions</h2>
           </Link>
         </div>
-        <div className={router.pathname === "/automate" ? classes.linkActive : classes.link}>
-          <Link href="/automate">
+        <div className={router.pathname === "/Automate" ? classes.linkActive : classes.link}>
+          <Link href="/Automate">
             <h2><i className="fa-regular fa-laptop-code"></i>&nbsp;&nbsp; Automate</h2>
           </Link>
         </div>
