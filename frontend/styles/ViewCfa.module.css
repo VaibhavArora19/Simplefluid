@@ -34,3 +34,9 @@
 .view h1 {
     color: rgb(139, 137, 137);
 }
+
+@media screen and (max-width:1400px) {
+    .box {
+        width: 100%;
+    }
+}

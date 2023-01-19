@@ -1,0 +1,13 @@
+.button {
+    margin-top: 2%;
+    color: white;
+    margin-left: 22%;
+    width: 500px;
+}
+
+@media screen and (max-width: 1300px) {
+    .button {
+        margin-left: 10%;
+        width: 70%;
+    }
+}

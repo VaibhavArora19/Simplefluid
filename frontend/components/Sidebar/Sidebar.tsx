@@ -11,13 +11,13 @@ const Sidebar = (): JSX.Element => {
     <div className={classes.sidebar}>
       <div className={classes.logo}>
         <Image
-          src="/logo.png"
-          width={72}
+          src="/logo.jpg"
+          width={68}
           height={32}
           alt="Simplefluid logo"
           className={classes.image}
         />
-        <Link href="/"><h1>Simplefluid</h1></Link>
+      <Link href="/"><h1>Simplefluid</h1></Link>
       </div>
       <div>
         <div className={router.pathname === "/dashboard" ? classes.linkActive : classes.link}>

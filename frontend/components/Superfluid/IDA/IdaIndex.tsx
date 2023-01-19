@@ -1,10 +1,8 @@
 import { FormEvent, useRef } from "react";
-import { useAccount } from "wagmi";
 import { createIndex } from "./SuperfluidIDA";
 import classes from "./IdaIndex.module.css";
 
 const IdaIndex = () => {
-    const {address} = useAccount();
     const indexRef = useRef<HTMLInputElement>(null);
 
     const createIndexHandler = async (event: FormEvent<HTMLFormElement>) => {
@@ -12,19 +10,6 @@ const IdaIndex = () => {
 
         createIndex(indexRef?.current?.value);
 
-        const res = await fetch('http://localhost:8080/createIndex', {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify({
-                indexId: indexRef?.current?.value,
-                creator: address
-            })
-        });
-
-        const data = await res.json();
-        console.log(data);
     };
 
     return (

@@ -25,7 +25,7 @@
 .third {
     width: 43px;
     position: relative;
-    left: 170px;
+    left: 45%;
     font-size: 1.4rem;
     color: #29bf0b;
     animation-name: float;
@@ -76,4 +76,10 @@
 }
 .card:hover {
     box-shadow: rgba(93, 126, 140, 0.12) 0px 2px 4px 0px, rgba(78, 114, 129, 0.32) 0px 2px 16px 0px;
+}
+
+@media screen and (max-width: 1300px) {
+    .card {
+        width: 320px;
+    }
 }
