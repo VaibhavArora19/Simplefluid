@@ -10,12 +10,8 @@ const PermissionForm = () => {
     const [operatorAddress, setOperatorAddress] = useState<string>('');
     const [permission, setPermission] = useState<string>('');
     const [flowRate, setFlowRate] = useState<string>('');
-    const { address } = useAccount();
+    const [loading, setLoading] = useState<boolean>(false);
 
-    const contract = useContract({
-      address: contractAddress,
-      abi: ABI
-    })
 
     const permissionHandler = (event: ChangeEvent<HTMLSelectElement>) => {
         setPermission(event.target.value);
@@ -24,24 +20,27 @@ const PermissionForm = () => {
 
     const setPermissionHandler = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
+        
         if(permission === '') return;
-
+        
         if(operatorAddress.length !== 42) return;
-
+        setLoading(true);
+        
         if(permission !== 'Grant Full Control' && permission !== 'Revoke Full Control') {
 
           // @ts-ignore
             const permissionValue = permissions[permission];
-            createOrRevokePermission(flowRate, operatorAddress, Number(permissionValue));
+            await createOrRevokePermission(flowRate, operatorAddress, Number(permissionValue));
 
            
         }else if(permission === 'Grant Full Control'){
-            authorizeFullControl(operatorAddress);
+            await authorizeFullControl(operatorAddress);
 
         }else if(permission === 'Revoke Full Control') {
-            revokeFullControl(operatorAddress);
+            await revokeFullControl(operatorAddress);
         }
+
+        setLoading(false);
     }
 
   return (
@@ -97,7 +96,7 @@ const PermissionForm = () => {
           />
         </div>
       </div>
-      <button className="btn btn-warning btn-wide">Set Permission</button>
+      <button className={`btn btn-warning btn-wide ${loading ? "loading" : ""}`}>{loading ? "Setting Permission" : "Set Permission"}</button>
       </form>
     </div>
         <div style={{marginTop:"5%", marginLeft:"27%"}}>

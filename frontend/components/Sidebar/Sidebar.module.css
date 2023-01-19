@@ -5,8 +5,13 @@
     border-right: 1px solid rgba(158, 154, 154, 0.288);
     height: 100vh;
     z-index: 100;
-    overflow-y: scroll;
+    overflow-y: auto;
     scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 

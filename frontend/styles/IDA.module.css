@@ -4,7 +4,7 @@
 }
 
 .bar {
-    margin-left: 7%;
+    margin-left: 5%;
     margin-top: 8%;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
@@ -81,8 +81,14 @@
 
 .top {
     display: flex;
-    justify-content: space-between;
+    gap: 280px;
     margin-bottom: 18px;
     padding-top: 10px;
     color: rgb(139, 137, 137);
+}
+
+@media screen and (max-width:1350px) {
+        .bar {
+            width: 85%;
+        }
 }

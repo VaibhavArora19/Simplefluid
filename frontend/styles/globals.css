@@ -19,3 +19,7 @@ body {
     margin: 6px 5px;
     box-sizing: border-box;
 }
+
+body::-webkit-scrollbar{
+    display: none;
+}

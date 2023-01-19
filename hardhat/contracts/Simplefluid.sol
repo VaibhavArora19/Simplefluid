@@ -230,7 +230,7 @@ contract Simplefluid is AutomationCompatibleInterface{
 
     //function to start the scheduled stream
     function startScheduledStream(address sender, address receiver) public returns(bool){
-        return flowScheduler.executeCreateFlow(token, sender, receiver, "0x");   
+        return flowScheduler.executeCreateFlow(token, sender, receiver, "");   
     }
 
     //function to delete the scheduled stream
@@ -239,7 +239,7 @@ contract Simplefluid is AutomationCompatibleInterface{
             bytes32 addressHash = keccak256(abi.encodePacked(sender, receiver));
             isAutomated[addressHash] = true;
 
-            return flowScheduler.executeDeleteFlow(token, sender, receiver, "0x");
+            return flowScheduler.executeDeleteFlow(token, sender, receiver, "");
     }
 
 }

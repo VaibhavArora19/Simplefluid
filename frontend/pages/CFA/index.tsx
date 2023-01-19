@@ -20,6 +20,7 @@ const CFA = () => {
   const [receiverAddress, setReceiverAddress] = useState<Array<string | null>>(
     []
   );
+  const [loading, setLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(true);
   const dispatch = useDispatch();
   const currentAccounts = useSelector(
@@ -60,8 +61,10 @@ const CFA = () => {
   };
 
   const streamHandler = async () => {
+    setLoading(true);
     if(update === "true"){
       await updateFlow(address, receiverAddress[0], flowRateRef?.current?.value);
+      setLoading(false);
       return;
     }
 
@@ -90,6 +93,8 @@ const CFA = () => {
     } catch (error) {
       console.error(error);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -158,15 +163,15 @@ const CFA = () => {
             <i className="fa-regular fa-user-plus"></i>&nbsp;Add wallet address
           </button>
           <button
-            className={`btn btn-warning ${styles.send}`}
+            className={`btn btn-warning ${styles.send} ${loading ? "loading": ""}`}
             onClick={streamHandler}
           >
-            Start streaming
+            {loading ? "Starting" : "Start streaming"}
           </button>
         </div>
           :
           <div style={{paddingBottom:"3%", marginTop:"3%"}}>
-            <button className={`btn btn-warning ${styles.modify}`} onClick={streamHandler}>Modify Stream</button>
+            <button className={`btn btn-warning ${styles.modify} ${loading ? "loading" : ""}`} onClick={streamHandler}>{loading ? "Modifying" : "Modify Stream"}</button>
           </div>
           }
       </div>

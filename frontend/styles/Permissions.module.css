@@ -1,6 +1,6 @@
 .permissions {
     margin-top: 5%;
-    margin-left: 10%;
+    margin-left: 8%;
 }
 
 .details {
@@ -18,14 +18,15 @@
 
 .top h3 {
     padding-left: 46px;
+    font-size: 1.05rem;
 }
 
 .view {
-    margin-left: 6%;
-    margin-top: 8%;
+    margin-left: 2%;
+    margin-top: 6%;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    width: 75%;
+    width: 80%;
     
 }
 
@@ -43,4 +44,11 @@
     border-radius:0 0 10px 10px;
     padding-left: 15px;
     margin-bottom: 50px;
+}
+
+
+@media screen and (max-width:1300px){
+        .view {
+            margin-left: 4%;
+        }
 }

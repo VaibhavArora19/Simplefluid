@@ -6,6 +6,7 @@ import classes from "./AutomationForm.module.css";
 
 const AutomationForm = () => {
     const [permission, setPermission] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const receiverRef = useRef<HTMLInputElement>(null);
     const flowRateRef = useRef<HTMLInputElement>(null);
     const startDateRef = useRef<HTMLInputElement>(null);
@@ -42,13 +43,16 @@ const AutomationForm = () => {
         
     }, [address]);
 
-    const authorizeScheduler = (event: React.MouseEvent<HTMLButtonElement | MouseEvent>) => {
+    const authorizeScheduler = async (event: React.MouseEvent<HTMLButtonElement | MouseEvent>) => {
         event.preventDefault();
-        authorizeFullControl("0xF18825d412C061aEfEFB4dF46a1c077636dA50bf")
+        setLoading(true);
+        await authorizeFullControl("0xF18825d412C061aEfEFB4dF46a1c077636dA50bf")
+        setLoading(false);
     };
     
-    const scheduleHandler = (event: React.MouseEvent<HTMLButtonElement | MouseEvent>) => {
+    const scheduleHandler = async (event: React.MouseEvent<HTMLButtonElement | MouseEvent>) => {
         event.preventDefault();
+        setLoading(true);
 
         let d = new Date(startDateRef.current?.value + " " + startTimeRef.current?.value)
         let startEpoch = d.getTime();
@@ -60,18 +64,21 @@ const AutomationForm = () => {
 
         if(startDateRef.current?.value === "" || endDateRef.current?.value === ""){
             if(startDateRef.current?.value === ""){
-                createFlowSchedule(receiverRef.current?.value, 0, Number(flowRateRef.current?.value), endEpoch);
+                await createFlowSchedule(receiverRef.current?.value, 0, Number(flowRateRef.current?.value), endEpoch);
+                setLoading(false);
                 return;
 
             }else if(endDateRef.current?.value === ""){
-                createFlowSchedule(receiverRef.current?.value, startEpoch, Number(flowRateRef.current?.value), 0);
+                await createFlowSchedule(receiverRef.current?.value, startEpoch, Number(flowRateRef.current?.value), 0);
+                setLoading(false);
                 return;
             }
             return;
         }
 
-        createFlowSchedule(receiverRef.current?.value, startEpoch, Number(flowRateRef.current?.value), endEpoch);
-    };
+        await createFlowSchedule(receiverRef.current?.value, startEpoch, Number(flowRateRef.current?.value), endEpoch);
+        setLoading(false);
+      };
 
   return (
     <div className={classes.form}>
@@ -109,9 +116,9 @@ const AutomationForm = () => {
             </div>
           </div>
           {permission ?
-          <button className="btn btn-warning btn-wide" onClick={scheduleHandler}>Schedule Stream</button>
+          <button className={`btn btn-warning btn-wide ${loading ? "loading" : ""}`} onClick={scheduleHandler}>{loading ? "Scheduling" : "Schedule Stream"}</button>
             :
-          <button className="btn btn-info btn-wide" onClick={authorizeScheduler}>Authorize Scheduler</button>
+          <button className={`btn btn-info btn-wide ${loading ? "loading" : ""}`} onClick={authorizeScheduler}>{loading ? "Authorizing" : "Authorize Scheduler"}</button>
           }
         </form>
       </div>

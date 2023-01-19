@@ -1,15 +1,15 @@
 .subscriptions {
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    width: 69%;
-    margin-top: 9%;
-    margin-left: 8%;
+    width: 72%;
+    margin-top: 6%;
+    margin-left: 5%;
 }
 
 .subscribe {
     margin-left: 7%;
-    margin-top: 10%;
-    margin-bottom: 3%;
+    margin-top: 7%;
+    margin-bottom: 5px;
     display: flex;
     gap:150px;
 }
@@ -29,4 +29,16 @@
     padding-left: 15px;
     margin-bottom: 50px;
     display: block;
+}
+
+@media screen and (max-width:1500px){
+    .subscriptions {
+        width: 80%;
+    }
+}
+  
+@media screen and (max-width:1360px){
+    .subscriptions {
+        width: 90%;
+    }
 }

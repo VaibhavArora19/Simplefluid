@@ -4,7 +4,7 @@ import classes from "./IdaBar.module.css";
 type IProps = {
     indexId: string;
     units: string;
-    isDistributed: boolean
+    distributed: string;
 };
 
 const IdaBar = (props: IProps) => {
@@ -19,7 +19,7 @@ const IdaBar = (props: IProps) => {
                 <h2>{props.units ? props.units : "-"}</h2>
             </div>
             <div className={classes.deposited}>
-                <h1>{"Approved"}</h1>
+                <h1>{props.distributed}</h1>
             </div>
         </div>
     )

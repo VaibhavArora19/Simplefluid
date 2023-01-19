@@ -14,7 +14,7 @@
 .symbolApprove {
     margin-right: 2%;
     margin-left: 6%;
-    margin-bottom: 6px;
+    margin-bottom: 9px;
     background-color: rgba(78, 247, 0, 0.179);
     width: 120px;
     height: 40px;
@@ -23,9 +23,9 @@
 }
 
 .symbolApprove h1 {
-    padding-top: 5px;
+    padding-top: 6px;
     color: rgb(5, 167, 5);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-align: center;
 }
 
@@ -42,9 +42,9 @@
 }
 
 .symbolRevoke h1 {
-    padding-top: 6px;
+    padding-top: 7px;
     font-weight: 500;
     color: rgb(209, 21, 0);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-align: center;
 }

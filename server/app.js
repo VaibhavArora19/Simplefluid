@@ -15,7 +15,7 @@ query permission ($id: ID!) {
     }
   }
 
-`
+`;
 
 const totalIndexQuery = `
 query totalIndex ($id: ID!) {
@@ -79,7 +79,7 @@ query ($receiver: ID) {
     }
   }
 }
-`
+`;
 
 const subscriptionQuery = `
 query subscription($id: ID!) {
@@ -97,76 +97,102 @@ query subscription($id: ID!) {
 }
 `;
 
-const client = createClient({
-    url:'https://api.thegraph.com/subgraphs/name/superfluid-finance/protocol-v1-mumbai'
+const automationPermissionQuery = `
+query MyQuery($flowOperator: Bytes = "", $sender: String = "") {
+  flowOperators(where: {sender: $sender, flowOperator: $flowOperator}) {
+    permissions
+  }
+}
+`;
+
+app.get("/permissions/:address", async (req, res, next) => {
+  const client = createClient({
+    url: "https://api.thegraph.com/subgraphs/name/superfluid-finance/protocol-v1-mumbai",
+  });
+
+  const { address } = req.params;
+
+  const result = await client
+    .query(permissionQuery, { id: address })
+    .toPromise();
+
+  res.json(result.data.flowOperators);
 });
 
+app.get("/totalindex/:address", async (req, res, next) => {
+  const client = createClient({
+    url: "https://api.thegraph.com/subgraphs/name/superfluid-finance/protocol-v1-mumbai",
+  });
+  const { address } = req.params;
 
-app.get('/permissions/:address', async (req, res, next) => {
-    const { address } = req.params;
+  const result = await client
+    .query(totalIndexQuery, { id: address })
+    .toPromise();
 
-    const result = await client.query(permissionQuery, {"id": address}).toPromise();
-
-    res.json(result.data.flowOperators);
+  res.json(result.data.indexes);
 });
 
-app.get('/totalindex/:address', async (req, res, next) => {
-    const { address } = req.params;
+app.get("/index/:id", async (req, res, next) => {
+  const client = createClient({
+    url: "https://api.thegraph.com/subgraphs/name/superfluid-finance/protocol-v1-mumbai",
+  });
+  
+  // { "id": "0x5e97bbfb258fbb110231c4f01c693ef6ba9553a6-0x5d8b4c2554aeb7e86f387b4d6c00ac33499ed01f-432" }
+  const { id } = req.params;
 
-    const result = await client.query(totalIndexQuery, {"id": address}).toPromise();
+  const result = await client.query(singleIndexQuery, { id: id }).toPromise();
 
-    res.json(result.data.indexes)
+  res.json(result?.data);
 });
 
-app.get('/index/:id', async(req, res, next) => {
-    // { "id": "0x5e97bbfb258fbb110231c4f01c693ef6ba9553a6-0x5d8b4c2554aeb7e86f387b4d6c00ac33499ed01f-432" }
-    const { id } = req.params;
-
-    const result = await client.query(singleIndexQuery, {"id": id}).toPromise();
-
-    res.json(result?.data);
-});
-
-
-app.get('/subscriptions/:id', async(req, res, next) => {
+app.get("/subscriptions/:id", async (req, res, next) => {
+  const client = createClient({
+    url: "https://api.thegraph.com/subgraphs/name/superfluid-finance/protocol-v1-mumbai",
+  });
 
   const { id } = req.params;
 
-  const result = await client.query(subscriptionQuery, {"id": id}).toPromise();
-
+  const result = await client.query(subscriptionQuery, { id: id }).toPromise();
 
   res.json(result?.data?.indexSubscriptions);
 });
 
-app.get('/streams/:sender', async (req, res, next) => {
-
+app.get("/streams/:sender", async (req, res, next) => {
+  const client = createClient({
+    url: "https://api.thegraph.com/subgraphs/name/superfluid-finance/protocol-v1-mumbai",
+  });
   const { sender } = req.params;
 
-  const result1 = await client.query(streamSendQuery, {"sender": sender}).toPromise();
-  const result2 = await client.query(streamReceivedQuery, {"receiver": sender}).toPromise();
+  const result1 = await client
+    .query(streamSendQuery, { sender: sender })
+    .toPromise();
+  const result2 = await client
+    .query(streamReceivedQuery, { receiver: sender })
+    .toPromise();
 
-  console.log(result1.data);
-  
-  res.json({outgoing: result1.data.streams, incoming: result2.data.streams});
+  console.log(result1.data.streams);
+
+  res.json({ outgoing: result1.data.streams, incoming: result2.data.streams });
 });
 
-app.get('/automationPermission/:sender', async(req, res, next) => {
 
-  const automationPermissionQuery = `
-  query MyQuery($flowOperator: Bytes = "", $sender: String = "") {
-    flowOperators(where: {sender: $sender, flowOperator: $flowOperator}) {
-      permissions
-    }
-  }
-  `
+app.get("/automationPermission/:sender", async (req, res, next) => {
+  const client = createClient({
+    url: "https://api.thegraph.com/subgraphs/name/superfluid-finance/protocol-v1-mumbai",
+  });
+
   let flowOperator = "0xF18825d412C061aEfEFB4dF46a1c077636dA50bf";
   flowOperator = flowOperator.toLowerCase();
   const { sender } = req.params;
 
-  const result = await client.query(automationPermissionQuery, {"flowOperator": flowOperator, "sender": sender}).toPromise(); 
+  const result = await client
+    .query(automationPermissionQuery, {
+      flowOperator: flowOperator,
+      sender: sender,
+    })
+    .toPromise();
 
   res.json(result.data);
-
 });
 
 app.listen(8080, console.log("Listening on port 8080"));
