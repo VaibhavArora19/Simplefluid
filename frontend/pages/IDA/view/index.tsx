@@ -13,7 +13,7 @@ const ViewIda = () => {
         (async function () {
         let publisher = address?.toLowerCase();
 
-        const idaArray = await fetch(`http://localhost:8080/totalindex/${publisher}`);
+        const idaArray = await fetch(`https://simplefluid-server.onrender.com/totalindex/${publisher}`);
         const response = await idaArray.json();
 
         setTotalIda([...response]);

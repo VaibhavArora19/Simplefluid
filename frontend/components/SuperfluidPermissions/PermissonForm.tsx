@@ -1,8 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { permissions } from "../../constants";
 import { createOrRevokePermission, authorizeFullControl, revokeFullControl } from "./index";
-import { contractAddress, ABI } from "../../constants";
-import { useAccount, useContract } from "wagmi";
 import Link from "next/link";
 import classes from "./PermissionForm.module.css";
 

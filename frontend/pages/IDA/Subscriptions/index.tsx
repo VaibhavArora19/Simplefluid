@@ -14,7 +14,7 @@ const Subscriptions = () => {
             if (address) {
                 const id = address.toLowerCase();
 
-                const data = await fetch(`http://localhost:8080/subscriptions/${id}`)
+                const data = await fetch(`https://simplefluid-server.onrender.com/subscriptions/${id}`)
                 
                 const res = await data.json();
                 setSubscriptionDetails(res);

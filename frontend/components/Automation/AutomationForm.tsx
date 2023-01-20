@@ -29,7 +29,7 @@ const AutomationForm = () => {
             (async function(){
                 let sender = address.toLowerCase();
 
-                const data = await fetch(`http://localhost:8080/automationPermission/${sender}`);
+                const data = await fetch(`https://simplefluid-server.onrender.com/automationPermission/${sender}`);
                 const result = await data.json();
 
                 for(let permission of result.flowOperators){

@@ -27,7 +27,7 @@ const IDADetails = () => {
       router.query.indexId;
 
     (async function () {
-      const res = await fetch(`http://localhost:8080/index/${id}`);
+      const res = await fetch(`https://simplefluid-server.onrender.com/index/${id}`);
 
       const data = await res.json();
       setIdaDetails(data.index);

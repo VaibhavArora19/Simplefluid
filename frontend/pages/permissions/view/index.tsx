@@ -25,7 +25,7 @@ const ViewPermissions = () => {
       let sender: string = "";
       if (address !== undefined) sender = address.toLowerCase();
 
-      const res = await fetch(`http://localhost:8080/permissions/${sender}`);
+      const res = await fetch(`https://simplefluid-server.onrender.com/permissions/${sender}`);
 
       const data = await res.json();
       setPermission([...data]);

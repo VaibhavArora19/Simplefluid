@@ -1,6 +1,4 @@
 import { useRouter } from "next/router";
-import { Skeleton } from "@mui/material";
-import Image from "next/image";
 import classes from "./LandingPage.module.css";
 
 const LandingPage = (): JSX.Element => {
