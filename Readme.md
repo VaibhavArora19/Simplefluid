@@ -26,7 +26,7 @@ There are just so many things that we can do now with the idea of programmable m
 
 ## 🌞 Screenshots
 
-<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot1.png" align = "center" />
+[!ScreenShot]("https://raw.githubusercontent.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot1.png")
 
 <br />
 <br />
