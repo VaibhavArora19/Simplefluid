@@ -142,7 +142,7 @@ export async function createStream(sender: string | undefined, receiver: string 
 
 };
 
-export async function updateFlow(sender: string | undefined, receiver: string | null, flowRate: string | undefined) {
+export async function updateFlow(sender: string | undefined, receiver: string | undefined, flowRate: string | undefined) {
         // @ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -153,7 +153,7 @@ export async function updateFlow(sender: string | undefined, receiver: string | 
       });
     
       const DAIxContract = await sf.loadSuperToken("fDAIx");
-      if(sender !== undefined && receiver !== null && flowRate !== undefined){
+      if(sender !== undefined && receiver !== undefined && flowRate !== undefined){
         let flowOp = DAIxContract.updateFlow({
           sender,
           receiver,

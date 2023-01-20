@@ -12,6 +12,7 @@ type reduxState = {
 type IProps = {
   id: number,
   update(newAddress: string, id:number):void
+  receiver: string | string[] | undefined
 }
 
 const CfaPage = (props:IProps) => {
@@ -21,6 +22,8 @@ const CfaPage = (props:IProps) => {
 
 
   const decrementHandler = () => {
+    if(props.receiver) return;
+
     if (currentCount.length <= 1) return;
 
     dispatch(counterActions.decrement());
@@ -38,7 +41,7 @@ const CfaPage = (props:IProps) => {
             type="text"
             placeholder="Receiver public address"
             className={classes.addresses}
-            value={address}
+            value={props.receiver ? props.receiver : address}
             onChange={addressHandler}
           />{" "}
       <span onClick={decrementHandler}>

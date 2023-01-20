@@ -29,7 +29,7 @@ const ViewStream = (props: Iprops) => {
     time.split(" ")[4];
 
   const updateStreamHandler = () => {
-    router.push("/CFA?update=true");
+    router.push(`/CFA?update=true&address=${props.address}`);
   }
 
   const cancelStreamHandler = async () => {

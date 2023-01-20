@@ -31,6 +31,7 @@ const CFA = () => {
   const flowRateRef = useRef<HTMLInputElement>(null);
 
   const {update} = router.query;
+  const receiver = router.query.address;
 
   const contract = useContract({
     address: contractAddress,
@@ -63,7 +64,7 @@ const CFA = () => {
   const streamHandler = async () => {
     setLoading(true);
     if(update === "true"){
-      await updateFlow(address, receiverAddress[0], flowRateRef?.current?.value);
+      await updateFlow(address, router.query.address?.toString(), flowRateRef?.current?.value);
       setLoading(false);
       return;
     }
@@ -98,7 +99,7 @@ const CFA = () => {
   };
 
   return (
-    <>{showAlert &&
+    <>{!update && showAlert &&
       <div className={`alert alert-info shadow-lg ${styles.alert}`}>
         <div>
           <svg
@@ -121,7 +122,7 @@ const CFA = () => {
         </div>
       </div> }
       <div className={styles.page}>
-        <h1>Send Stream</h1>
+        <h1>{update ? "Update Stream" : "Send Stream"}</h1>
         <label>Receiver public Address</label>
         <div>
           {currentAccounts.map((_, index) => {
@@ -130,6 +131,7 @@ const CFA = () => {
                 key={index}
                 id={index + 1}
                 update={updateReceiverAddress}
+                receiver={receiver}
               />
             );
           })}
