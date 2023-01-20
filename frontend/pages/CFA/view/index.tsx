@@ -14,7 +14,7 @@ const CFAView = () => {
       (async function () {
         const id = address.toLowerCase();
 
-        const data = await fetch(`https://simplefluid.vercel.app/streams/${id}`);
+        const data = await fetch(`https://simplefluid-server.onrender.com/streams/${id}`);
 
         const res = await data.json();
 

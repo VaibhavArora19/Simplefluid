@@ -1,4 +1,4 @@
-const { createClient } = require("@urql/core");
+const { gql, createClient } = require("@urql/core");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -125,7 +125,7 @@ app.get("/subscriptions/:id", async (req, res, next) => {
 
 app.get("/streams/:sender", async (req, res, next) => {
   
-    const streamSendQuery = `
+    const streamSendQuery = gql`
     query streamSendQuery($sender: ID = "") {
     streams(where: {sender: $sender}) {
     currentFlowRate
@@ -141,7 +141,7 @@ app.get("/streams/:sender", async (req, res, next) => {
   `;
 
 
-  const streamReceivedQuery = `
+  const streamReceivedQuery = gql`
     query ($receiver: ID) {
     streams(where: {receiver: $receiver}) {
     currentFlowRate
@@ -159,7 +159,6 @@ app.get("/streams/:sender", async (req, res, next) => {
   }
   `;
 
-  console.log('id is ', req.params.sender);
 
   const client = createClient({
     url: "https://api.thegraph.com/subgraphs/name/superfluid-finance/protocol-v1-mumbai",
@@ -174,8 +173,6 @@ app.get("/streams/:sender", async (req, res, next) => {
     .query(streamReceivedQuery, { receiver: sender })
     .toPromise();
 
-    console.log('data is ', result1);
-  console.log(result1.data.streams);
 
   res.json({ outgoing: result1.data.streams, incoming: result2.data.streams });
 });
