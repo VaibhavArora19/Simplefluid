@@ -26,48 +26,48 @@ There are just so many things that we can do now with the idea of programmable m
 
 ## 🌞 Screenshots
 
-<img src = "frontend/public/Screenshot1.png" align = "center" />
+<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot1.png" align = "center" />
 
 <br />
 <br />
 
 
-<img src = "frontend/public/Screenshot2.png" align = "center" />
+<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot2.png" align = "center" />
 
 <br />
 <br />
 
-<img src = "frontend/public/Screenshot3.png" align = "center" />
+<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot3.png" align = "center" />
 
 <br />
 <br />
 
-<img src = "frontend/public/Screenshot4.png" align = "center" />
+<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot4.png" align = "center" />
 
 <br />
 <br />
 
-<img src = "frontend/public/Screenshot5.png" align = "center" />
+<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot5.png" align = "center" />
 
 <br />
 <br />
 
-<img src = "frontend/public/Screenshot6.png" align = "center" />
+<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot6.png" align = "center" />
 
 <br />
 <br />
 
-<img src = "frontend/public/Screenshot7.png" align = "center" />
+<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot7.png" align = "center" />
 
 <br />
 <br />
 
-<img src = "frontend/public/Screenshot8.png" align = "center" />
+<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot8.png" align = "center" />
 
 <br />
 <br />
 
-<img src = "frontend/public/Screenshot9.png" align = "center" />
+<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot9.png" align = "center" />
 
 <br />
 <br />
