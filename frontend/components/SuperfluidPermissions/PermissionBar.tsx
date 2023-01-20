@@ -14,7 +14,7 @@ const PermissionBar = (props: IProps)=> {
     const {address} = useAccount();
     
     // @ts-ignore
-    const currentPermssion = reversePermissions[props.permissions];
+    const currentPermission = reversePermissions[props.permissions];
 
     const img = Math.floor(Math.random() * 3);
 
@@ -29,7 +29,7 @@ const PermissionBar = (props: IProps)=> {
                 <h3>{`${props.operatorAddress.substr(0,6)}...${props.operatorAddress.substr(38, 43)}`}</h3>
             </div>
             <div className={classes.type}>
-                <h2>{currentPermssion}</h2> 
+                <h2>{currentPermission}</h2> 
             </div>
             <div className={classes.cross} onClick={revokePermissionHandler}>
                 <h4 style={{fontSize:"22px"}}><i className="fa-light fa-circle-xmark"></i></h4>
