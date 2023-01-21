@@ -11,6 +11,7 @@ type Iprops = {
   address: string;
   totalFlow: string;
   time: string;
+  type: string;
 };
 
 const ViewStream = (props: Iprops) => {
@@ -37,7 +38,11 @@ const ViewStream = (props: Iprops) => {
   }
 
   const cancelStreamHandler = async () => {
-    deleteFlow(address, props.address);
+    if(props.type === "incoming") {
+      deleteFlow(props.address, address);
+    }else{
+      deleteFlow(address, props.address);
+    }
   };
 
 
@@ -63,9 +68,9 @@ const ViewStream = (props: Iprops) => {
         <h1>
           {props.flowRate !== "0" ? (
             <span className={classes.icon}>
-              <div className={classes.pen} onClick={updateStreamHandler}>
+             { props.type === "outgoing" && <div className={classes.pen} onClick={updateStreamHandler}>
                 <i className="fa-regular fa-pen"></i>
-              </div>
+              </div> }
               <div className={classes.cross} onClick={cancelStreamHandler}>
                 <i className="fa-light fa-circle-xmark"></i>
               </div>

@@ -13,15 +13,17 @@
 }
 
 .time {
-    margin-left: 7%;
+    margin-left: 6%;
     width: 100px;
 }
 
 .flow {
+    margin-left: 2%;
     width: 160px;
 }
 
 .flowRate {
+    margin-left: 4%;
     width: 20px;
     text-align: left;
 }

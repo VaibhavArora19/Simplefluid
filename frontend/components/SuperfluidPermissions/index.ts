@@ -166,7 +166,7 @@ export async function updateFlow(sender: string | undefined, receiver: string | 
 }
 
 //Deletes the ongoing flow, this function should be operated by user and not user
-export async function deleteFlow(sender: string | undefined, receiver: string | null) {
+export async function deleteFlow(sender: string | undefined, receiver: string | undefined) {
 
     // @ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -179,7 +179,7 @@ export async function deleteFlow(sender: string | undefined, receiver: string | 
 
   const DAIxContract = await sf.loadSuperToken("fDAIx");
 
-  if(sender !== undefined && receiver !== null){
+  if(sender !== undefined && receiver !== undefined){
 
     let flowOp = DAIxContract.deleteFlow({
       sender,

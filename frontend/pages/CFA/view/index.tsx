@@ -63,7 +63,7 @@ const CFAView = () => {
       </div>
       <div className={styles.view}>
         <div>
-          <h1>Sender</h1>
+          <h1>Sender/Receiver</h1>
         </div>
         <div>
           <h1>All Time Flow</h1>
@@ -90,6 +90,7 @@ const CFAView = () => {
                 .totalAmountStreamedInUntilUpdatedAt
             }
             time={stream.createdAtTimestamp}
+            type="outgoing"
           />
             </>
         );
@@ -107,6 +108,7 @@ const CFAView = () => {
                 .totalAmountStreamedInUntilUpdatedAt
             }
             time={stream.receiver.createdAtTimestamp}
+            type="incoming"
           />
             </>
         );
