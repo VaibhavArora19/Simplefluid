@@ -1,4 +1,4 @@
-export const contractAddress = "0xA88809ab40993B75e45D3A2B5560a48E502BDC01"
+export const contractAddress = "0x72a72f78739c8AEA8C747a334cc6018bbEcFeD8d"
 
 export const permissions = {
 	"Create": 1,
