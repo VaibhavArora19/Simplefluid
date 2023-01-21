@@ -18,7 +18,7 @@ const ViewStream = (props: Iprops) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { address } = useAccount();
-
+  console.log('pp', props);
   let date = new Date(0);
   date.setUTCSeconds(Number(props.time));
 

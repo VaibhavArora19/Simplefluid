@@ -104,10 +104,9 @@ const CFAView = () => {
             flowRate={stream?.currentFlowRate}
             address={stream.sender?.id}
             totalFlow={
-              stream.receiver?.accountTokenSnapshots[0]
-                .totalAmountStreamedInUntilUpdatedAt
+              stream.streamedUntilUpdatedAt
             }
-            time={stream.receiver.createdAtTimestamp}
+            time={stream.createdAtTimestamp}
             type="incoming"
           />
             </>

@@ -147,14 +147,12 @@ app.get("/streams/:sender", async (req, res, next) => {
     currentFlowRate
     receiver {
       id
-      accountTokenSnapshots {
-        totalAmountStreamedInUntilUpdatedAt
-      }
-      createdAtTimestamp
     }
     sender {
       id
     }
+    createdAtTimestamp
+    streamedUntilUpdatedAt
   }
   }
   `;
