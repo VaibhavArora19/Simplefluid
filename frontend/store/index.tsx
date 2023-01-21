@@ -21,6 +21,11 @@ const counterSlice = createSlice({
           return {
             totalAccounts: state.totalAccounts.slice(0, state.totalAccounts.length - 1)
           }
+        },
+        trim(state) {
+            return {
+                totalAccounts: state.totalAccounts.slice(0, 1)
+            }
         }
     }
 });

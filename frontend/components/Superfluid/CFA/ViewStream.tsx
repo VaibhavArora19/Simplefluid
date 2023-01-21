@@ -1,5 +1,7 @@
 import { ethers } from "ethers";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { counterActions } from "../../../store";
 import { deleteFlow } from "../../SuperfluidPermissions";
 import { useAccount } from "wagmi";
 import classes from "./ViewStream.module.css";
@@ -12,6 +14,7 @@ type Iprops = {
 };
 
 const ViewStream = (props: Iprops) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const { address } = useAccount();
 
@@ -29,6 +32,7 @@ const ViewStream = (props: Iprops) => {
     time.split(" ")[4];
 
   const updateStreamHandler = () => {
+    dispatch(counterActions.trim());
     router.push(`/CFA?update=true&address=${props.address}`);
   }
 
