@@ -32,12 +32,12 @@ There are just so many things that we can do now with the idea of programmable m
 <br />
 
 
-<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot2.png](https://firebasestorage.googleapis.com/v0/b/fir-tutorial-e6644.appspot.com/o/simplefluid-screenshots%2FScreenshot2.png?alt=media&token=ad82d7f7-f799-4920-a235-4e11e8d34925" align = "center" />
+<img src = "https://firebasestorage.googleapis.com/v0/b/fir-tutorial-e6644.appspot.com/o/simplefluid-screenshots%2FScreenshot2.png?alt=media&token=ad82d7f7-f799-4920-a235-4e11e8d34925" align = "center" />
 
 <br />
 <br />
 
-<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot3.png](https://firebasestorage.googleapis.com/v0/b/fir-tutorial-e6644.appspot.com/o/simplefluid-screenshots%2FScreenshot3.png?alt=media&token=5b1bb27b-e8e0-406c-a0b4-a3cf9bf281f5" align = "center" />
+<img src = "https://firebasestorage.googleapis.com/v0/b/fir-tutorial-e6644.appspot.com/o/simplefluid-screenshots%2FScreenshot3.png?alt=media&token=5b1bb27b-e8e0-406c-a0b4-a3cf9bf281f5" align = "center" />
 
 <br />
 <br />
@@ -47,7 +47,7 @@ There are just so many things that we can do now with the idea of programmable m
 <br />
 <br />
 
-<img src = "https://github.com/VaibhavArora19/Simplefluid/frontend/public/Screenshot5.png](https://firebasestorage.googleapis.com/v0/b/fir-tutorial-e6644.appspot.com/o/simplefluid-screenshots%2FScreenshot5.png?alt=media&token=79189933-4522-4d4c-807a-566b188a636d" align = "center" />
+<img src = "https://firebasestorage.googleapis.com/v0/b/fir-tutorial-e6644.appspot.com/o/simplefluid-screenshots%2FScreenshot5.png?alt=media&token=79189933-4522-4d4c-807a-566b188a636d" align = "center" />
 
 <br />
 <br />
