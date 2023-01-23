@@ -26,7 +26,7 @@ There are just so many things that we can do now with the idea of programmable m
 
 ## 🌞 Screenshots
 
-![ScreenShot](/frontend/public/Screenshot1.png)
+<img src="https://firebasestorage.googleapis.com/v0/b/fir-tutorial-e6644.appspot.com/o/simplefluid-screenshots%2FScreenshot1.png?alt=media&token=564afad2-2c25-4493-8252-8f1ef395915f" align="center"/>
 
 <br />
 <br />
