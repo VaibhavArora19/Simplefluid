@@ -1,5 +1,7 @@
 import { ethers } from "ethers";
 import { Framework } from "@superfluid-finance/sdk-core";
+import { abi } from "../../constants/abi";
+import { ethxContract } from "../../constants";
 
 //function to authorize full control to an operator
 export async function authorizeFullControl(operator: string) {
@@ -12,7 +14,7 @@ export async function authorizeFullControl(operator: string) {
     provider: provider,
   });
 
-  const DAIxContract = await sf.loadSuperToken("fDAIx");
+  const DAIxContract = await sf.loadSuperToken("ETHx");
   const DAIx = DAIxContract.address;
 
   try {
@@ -42,7 +44,7 @@ export async function revokeFullControl(operator: string) {
     provider: provider,
   });
 
-  const DAIxContract = await sf.loadSuperToken("fDAIx");
+  const DAIxContract = await sf.loadSuperToken("ETHx");
   const DAIx = DAIxContract.address;
 
   try {
@@ -75,7 +77,7 @@ export async function createOrRevokePermission(flowRate: string, operator: strin
     provider: provider,
   });
 
-  const DAIxContract = await sf.loadSuperToken("fDAIx");
+  const DAIxContract = await sf.loadSuperToken("ETHx");
   const DAIx = DAIxContract.address;
 
   try {
@@ -106,21 +108,26 @@ export async function createStream(sender: string | undefined, receiver: string 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
 
-  const sf = await Framework.create({
-    chainId: 11155111,
-    provider: provider,
-  });
+  // const sf = await Framework.create({
+  //   chainId: 11155111,
+  //   provider: provider,
+  //   resolverAddress: "0xcfA132E353cB4E398080B9700609bb008eceB125",
+  // });
 
-  const DAIxContract = await sf.loadSuperToken("fDAIx");
-  const DAIx = DAIxContract.address;
+  const contract = new ethers.Contract("0xcfA132E353cB4E398080B9700609bb008eceB125", abi, signer);
+
+  // const DAIxContract = await sf.loadSuperToken("ETHx");
+  // const DAIx = DAIxContract.address;
 
   if (receiver !== null && flowRate !== undefined) {
-    let flowOp = DAIxContract.createFlow({
-      sender,
-      receiver,
-      flowRate,
-    });
-    await flowOp.exec(signer);
+    // let flowOp = DAIxContract.createFlow({
+    //   sender,
+    //   receiver,
+    //   flowRate,
+    // });
+    // await flowOp.exec(signer);
+
+    await contract.createFlow(ethxContract, sender, receiver, flowRate, "0x");
   }
 }
 
@@ -129,22 +136,26 @@ export async function updateFlow(sender: string | undefined, receiver: string | 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
 
-  const sf = await Framework.create({
-    chainId: 11155111,
-    provider: provider,
-  });
+  // const sf = await Framework.create({
+  //   chainId: 11155111,
+  //   provider: provider,
+  // });
 
-  const DAIxContract = await sf.loadSuperToken("fDAIx");
-  if (sender !== undefined && receiver !== undefined && flowRate !== undefined) {
-    let flowOp = DAIxContract.updateFlow({
-      sender,
-      receiver,
-      flowRate,
-    });
-    console.log("updating flow");
+  // const DAIxContract = await sf.loadSuperToken("ETHx");
+  // if (sender !== undefined && receiver !== undefined && flowRate !== undefined) {
+  //   let flowOp = DAIxContract.updateFlow({
+  //     sender,
+  //     receiver,
+  //     flowRate,
+  //   });
+  //   console.log("updating flow");
 
-    await flowOp.exec(signer);
-  }
+  //   await flowOp.exec(signer);
+  // }
+
+  const contract = new ethers.Contract("0xcfA132E353cB4E398080B9700609bb008eceB125", abi, signer);
+
+  await contract.updateFlow(ethxContract, sender, receiver, flowRate, "0x");
 }
 
 //Deletes the ongoing flow, this function should be operated by user and not user
@@ -153,21 +164,25 @@ export async function deleteFlow(sender: string | undefined, receiver: string | 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
 
-  const sf = await Framework.create({
-    chainId: 11155111,
-    provider: provider,
-  });
+  // const sf = await Framework.create({
+  //   chainId: 11155111,
+  //   provider: provider,
+  // });
 
-  const DAIxContract = await sf.loadSuperToken("fDAIx");
+  // const DAIxContract = await sf.loadSuperToken("ETHx");
 
-  if (sender !== undefined && receiver !== undefined) {
-    let flowOp = DAIxContract.deleteFlow({
-      sender,
-      receiver,
-    });
+  // if (sender !== undefined && receiver !== undefined) {
+  //   let flowOp = DAIxContract.deleteFlow({
+  //     sender,
+  //     receiver,
+  //   });
 
-    console.log("Deleting your stream");
+  //   console.log("Deleting your stream");
 
-    await flowOp.exec(signer);
-  }
+  //   await flowOp.exec(signer);
+  // }
+
+  const contract = new ethers.Contract("0xcfA132E353cB4E398080B9700609bb008eceB125", abi, signer);
+
+  await contract.deleteFlow(ethxContract, sender, receiver, "0x");
 }
