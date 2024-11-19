@@ -19,12 +19,7 @@ const IDADetails = () => {
   const { address } = useAccount();
 
   useEffect(() => {
-    const id =
-      address?.toLowerCase() +
-      "-" +
-      "0x5d8b4c2554aeb7e86f387b4d6c00ac33499ed01f" +
-      "-" +
-      router.query.indexId;
+    const id = address?.toLowerCase() + "-" + "0x30a6933Ca9230361972E413a15dC8114c952414e" + "-" + router.query.indexId;
 
     (async function () {
       const res = await fetch(`https://simplefluid-server.onrender.com/index/${id}`);
@@ -32,14 +27,13 @@ const IDADetails = () => {
       const data = await res.json();
       setIdaDetails(data.index);
       setSubscribers(data.index.subscriptions);
-      
     })();
   }, [address]);
 
   return (
     <>
       {idaDetails !== null && (
-        <div style={{marginBottom:'5%'}}>
+        <div style={{ marginBottom: "5%" }}>
           <Details
             indexId={idaDetails?.indexId}
             totalUnits={idaDetails?.totalUnits}
@@ -67,15 +61,20 @@ const IDADetails = () => {
                         <th>{index + 1}</th>
                         <td>{subscriber?.subscriber?.id}</td>
                         <td>{subscriber?.subscriber?.subscriptions[0].units}</td>
-                        <td>{subscriber?.subscriber?.subscriptions[0].approved ? 
-                        <div className={styles.true}>
-                            <h1><i className="fa-light fa-circle-check"></i></h1>
-                        </div>
-                        :
-                        <div className={styles.false}>
-                            <h1><i className="fa-light fa-circle-xmark"></i></h1>
-                        </div>
-                        }
+                        <td>
+                          {subscriber?.subscriber?.subscriptions[0].approved ? (
+                            <div className={styles.true}>
+                              <h1>
+                                <i className="fa-light fa-circle-check"></i>
+                              </h1>
+                            </div>
+                          ) : (
+                            <div className={styles.false}>
+                              <h1>
+                                <i className="fa-light fa-circle-xmark"></i>
+                              </h1>
+                            </div>
+                          )}
                         </td>
                       </tr>
                     );
@@ -86,7 +85,9 @@ const IDADetails = () => {
           </div>
         </div>
       )}
-      <Link href={`/IDA/${router.query.indexId}`} className={`link link-warning ${styles.btn}`}>Update Index</Link>
+      <Link href={`/IDA/${router.query.indexId}`} className={`link link-warning ${styles.btn}`}>
+        Update Index
+      </Link>
     </>
   );
 };

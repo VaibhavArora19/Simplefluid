@@ -1,92 +1,89 @@
 .page {
-    margin-left: 3%;
-    margin-top: 4%;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    width: 75%;
+  margin-left: 3%;
+  margin-top: 4%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  width: 75%;
 }
 
 .page h1 {
-    margin-left: 5%;
-    background-color: rgba(247, 177, 0, 0.179);
-    width: 150px;
-    color: #bf920b;
-    font-size: 1.25rem;
-    border-radius:0 0 10px 10px;
-    padding-left: 20px;
-    margin-bottom: 50px;
+  margin-left: 5%;
+  background-color: rgba(247, 177, 0, 0.179);
+  width: 150px;
+  color: #bf920b;
+  font-size: 1.25rem;
+  border-radius: 0 0 10px 10px;
+  padding-left: 20px;
+  margin-bottom: 50px;
 }
 
 .flow {
-    width: 90%;
-    height: 45px;
-    border-radius: 10px;
-    margin-left: 70px;
-    margin-top: 1%;
-    margin-bottom: 4%;
-    padding-left: 8px;
-    border: 1px solid rgb(228, 220, 220);
-
+  width: 90%;
+  height: 45px;
+  border-radius: 10px;
+  margin-left: 70px;
+  margin-top: 1%;
+  margin-bottom: 4%;
+  padding-left: 20px;
+  border: 1px solid rgb(228, 220, 220);
 }
 
 .flow:focus {
-    outline: none !important;
-    border: 1px solid #efc035;
+  outline: none !important;
+  border: 1px solid #efc035;
 }
 
 .flowRate {
-    width: 75%;
+  width: 75%;
 }
 
-
 .modify {
-    margin-left: 10%;
-    width: 70%;
-    color: white;
+  margin-left: 10%;
+  width: 70%;
+  color: white;
 }
 
 .token {
-    width: 100px;
-    margin-left: 73px;
-    color: green;
+  width: 100px;
+  margin-left: 73px;
+  color: green;
 }
 
-.fields div{
-    display: inline-block;
+.fields div {
+  display: inline-block;
 }
 
 .page label {
-    font-size: 20px;
-    padding-left: 80px;
-    display: block;
+  font-size: 20px;
+  padding-left: 80px;
+  display: block;
 }
 
-.page h4{
-    font-size: 0.99rem;
-    margin-top: 2%;
-    margin-bottom: 2%;
+.page h4 {
+  font-size: 0.99rem;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
-
 
 .button {
-    margin-left: 10%;
-    color:white;
+  margin-left: 10%;
+  color: white;
 }
 
 .alert {
-    width: 60%;
-    margin-top: 5%;
-    margin-left: 13%;
+  width: 60%;
+  margin-top: 5%;
+  margin-left: 13%;
 }
 
 .send {
-    margin-left: 2%;
-    width: 50%;
-    color: white;
+  margin-left: 2%;
+  width: 50%;
+  color: white;
 }
 
-@media screen and (max-width:1350px){
-    .page {
-        width: 85%;
-    }
+@media screen and (max-width: 1350px) {
+  .page {
+    width: 85%;
+  }
 }
